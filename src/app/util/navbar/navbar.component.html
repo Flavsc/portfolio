@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    <a href="/">Logo</a>
+  </div>
+  <div class="menu-icon" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul class="navbar-links" [class.active]="menuOpen">
+    <li><a href="">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>

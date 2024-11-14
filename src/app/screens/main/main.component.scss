@@ -1,0 +1,43 @@
+@import "../../../constants";
+
+.main-boxes {
+  margin: 2%;
+  display: grid;
+  display: flex;
+  columns: 2;
+  grid-row: 0;
+  gap: 2%;
+  align-items: center;
+  z-index: 1;
+
+  .huge-box {
+    background: linear-gradient(145deg, $Background, $Background2);
+    box-shadow: 28px 28px 72px #011827;
+    padding: 30px;
+    border-radius: 25px;
+    width: 65%;
+    transition: 750ms;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
+      width: 67%;
+      transition: 750ms;
+    }
+  }
+
+  .side-box {
+    padding: 30px;
+    background-color: $Background2;
+    border-radius: 25px;
+    width: 30%;
+    right: 0;
+    transition: 750ms;
+    text-align: right;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background2, darken($Accent, 20%));
+      width: 32%;
+      transition: 750ms;
+    }
+  }
+}

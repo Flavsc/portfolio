@@ -1,0 +1,13 @@
+$dark-theme-colors: (
+	"primary": #D9CAC1,
+	"secondary": #A69F98,
+    "accent": #284B59,
+	"background": #022840,
+	"background-2": #0D0D0D,
+);
+
+$Primary: map-get($dark-theme-colors , "primary");
+$Secondary: map-get($dark-theme-colors , "secondary");
+$Accent: map-get($dark-theme-colors , "accent");
+$Background: map-get($dark-theme-colors , "background");
+$Background2: map-get($dark-theme-colors , "background-2");
