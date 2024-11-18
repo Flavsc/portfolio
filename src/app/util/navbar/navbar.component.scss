@@ -7,20 +7,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0rem 1.5rem;
   position: relative;
+  transition: 750ms;
 
-  .navbar-logo a {
-    color: $Primary;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
+  &:hover {
+    padding: 0.5rem 1.5rem;
     transition: 750ms;
+    background: darken($Background, 1%);
+
+    .cursor-dot-outline {
+      $size: 40px;
+      width: $size;
+      height: $size;
+      background-color: rgba($Secondary, 0.5);
+      
+    }
+  }
+
+  .navbar-logo {
+    padding: 10px;
+    width: 40px;
+    height: auto;
+    transition: 750ms;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
 
     &:hover {
       transition: 750ms;
-      font-size: 1.7rem;
-      color: $Accent;
+      width: 50px;
     }
   }
 
@@ -56,7 +74,6 @@
       }
     }
   }
-
 
   @media (max-width: 768px) {
     .menu-icon {

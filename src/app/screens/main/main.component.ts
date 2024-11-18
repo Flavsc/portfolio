@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.scss"],
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  constructor() { }
+  cards = [
+    { id: 1, title: "conheça a mazca", image: "../assets/coruja_branca.svg" },
+    { id: 2, title: "texto", image: "../assets/coruja_branca.svg" },
+    { id: 3, title: "texto", image: "../assets/coruja_branca.svg" },
+    { id: 4, title: "texto", image: "../assets/coruja_branca.svg" },
+  ];
 
-  ngOnInit() {
-  }
+  constructor() {}
 
 }

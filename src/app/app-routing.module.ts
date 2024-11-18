@@ -4,6 +4,7 @@ import { MainComponent } from './screens/main/main.component';
 import { AboutComponent } from './screens/about/about.component';
 import { ProjectsComponent } from './screens/projects/projects.component';
 import { ContactComponent } from './screens/contact/contact.component';
+import { GalleryComponent } from './screens/gallery/gallery.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'gallery',
+    component: GalleryComponent,
   },
 ];
 

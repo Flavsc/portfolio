@@ -1,72 +1,19 @@
-<div class="main-boxes">
+<div class="main-right-boxes">
   <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
+    <h1>habilidades técnicas</h1>
+    <h2>
+      desenvolvedor full-stack, atualmente utilizando typescript, angular e nest
+    </h2>
   </div>
   <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
+    <h1>Clique aqui</h1>
+    <h2>Para ver meus projetos</h2>
   </div>
 </div>
-<div class="main-boxes">
-  <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-  <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-</div>
-<div class="main-boxes">
-  <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-  <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-</div>
-<div class="main-boxes">
-  <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-  <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-</div>
-<div class="main-boxes">
-  <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-  <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-</div>
-<div class="main-boxes">
-  <div class="side-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
-  </div>
-  <div class="huge-box">
-    <h1>Palavras Legais</h1>
-    <h2>Um texto de palavras legais</h2>
-    <p>palavras legais muito pequenininhas só para encher</p>
+
+<div class="vertical-boxes">
+  <div class="box" *ngFor="let card of cards">
+    <h1>{{ card.title }}</h1>
+    <img [src]="card.image" alt="logo">
   </div>
 </div>

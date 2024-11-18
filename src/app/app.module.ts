@@ -10,6 +10,8 @@ import { NavbarComponent } from "./util/navbar/navbar.component";
 import { ContactComponent } from "./screens/contact/contact.component";
 import { AboutComponent } from "./screens/about/about.component";
 import { ProjectsComponent } from "./screens/projects/projects.component";
+import { FooterComponent } from "./util/footer/footer.component";
+import { GalleryComponent } from './screens/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,9 @@ import { ProjectsComponent } from "./screens/projects/projects.component";
     AboutComponent,
     ProjectsComponent,
     NavbarComponent,
+    FooterComponent,
+    GalleryComponent,
+
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
