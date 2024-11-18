@@ -1,0 +1,80 @@
+@import "../../../constants";
+
+.footer {
+  width: 100%;
+  border-radius: 25px;
+  padding: 2rem 0;
+  background: linear-gradient(127deg, $Background2, darken($Background2, 8%));
+  flex-shrink: 0;
+  
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  
+  &__section {
+    margin-bottom: 2rem;
+    min-width: 200px;
+    
+    h3 {
+      color: $Primary;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  &__list {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      margin-bottom: 0.8rem;
+    }
+    
+    a {
+      color: $Secondary;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+      font-weight: 400;
+      
+      &:hover,
+      &:focus {
+        color: $Primary;
+        transform: translateX(5px);
+      }
+    }
+  }
+  
+  &__bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba($Accent, 0.2);
+    
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $Accent;
+      font-weight: 300;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    &__content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    &__section {
+      margin-bottom: 2rem;
+    }
+  }
+}

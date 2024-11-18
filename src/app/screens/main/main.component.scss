@@ -108,6 +108,12 @@
     &:hover {
       background: linear-gradient(145deg, $Background, darken($Accent, 20%));
       transition: 750ms;
+      width: 18.5%;
+
+      img {
+        width: 99%;
+      }
+
     }
 
     img {
