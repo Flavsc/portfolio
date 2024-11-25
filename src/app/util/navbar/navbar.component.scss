@@ -26,19 +26,21 @@
   }
 
   .navbar-logo {
-    padding: 10px;
-    width: 40px;
+    padding: 5px;
+    width: 70px;
     height: auto;
     transition: 750ms;
-
+    border-radius: 40px;
+    
     img {
+      border-radius: 40px;
       width: 100%;
       height: auto;
     }
 
     &:hover {
       transition: 750ms;
-      width: 50px;
+      width: 75px;
     }
   }
 

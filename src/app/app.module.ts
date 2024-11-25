@@ -11,7 +11,8 @@ import { ContactComponent } from "./screens/contact/contact.component";
 import { AboutComponent } from "./screens/about/about.component";
 import { ProjectsComponent } from "./screens/projects/projects.component";
 import { FooterComponent } from "./util/footer/footer.component";
-import { GalleryComponent } from './screens/gallery/gallery.component';
+import { GalleryComponent } from "./screens/gallery/gallery.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,8 @@ import { GalleryComponent } from './screens/gallery/gallery.component';
     NavbarComponent,
     FooterComponent,
     GalleryComponent,
-
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

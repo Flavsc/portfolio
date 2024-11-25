@@ -1,9 +1,9 @@
 $dark-theme-colors: (
-	"primary": #D9CAC1,
-	"secondary": #A69F98,
-    "accent": #284B59,
-	"background": #022840,
-	"background-2": #0D0D0D,
+	"primary": #ddf0ff,
+	"secondary": #dbbbf5,
+    "accent": #ce5374,
+	"background": #223127,
+	"background-2": #9C0D38,
 );
 
 $Primary: map-get($dark-theme-colors , "primary");

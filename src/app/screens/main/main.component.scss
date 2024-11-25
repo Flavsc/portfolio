@@ -12,7 +12,7 @@
 
   .huge-box {
     background: linear-gradient(145deg, $Background, $Background2);
-    box-shadow: 28px 28px 72px #011827;
+    box-shadow: 28px 28px 72px #36012b;
     padding: 30px;
     border-radius: 25px;
     width: 65%;
@@ -54,7 +54,7 @@
 
   .huge-box {
     background: linear-gradient(145deg, $Background, $Background2);
-    box-shadow: 28px 28px 72px #011827;
+    box-shadow: 28px 28px 72px #36012b;
     padding: 30px;
     border-radius: 25px;
     width: 65%;
@@ -97,10 +97,10 @@
 
   .box {
     background: linear-gradient(145deg, darken($Background, 5%), $Background2);
-    box-shadow: 28px 28px 72px #011827;
+    box-shadow: 28px 28px 72px #36012b;
     padding: 30px;
     border-radius: 25px;
-    width: 18%;
+    width: 17%;
     transition: 750ms;
     display: flex;
     flex-direction: column;
@@ -108,12 +108,7 @@
     &:hover {
       background: linear-gradient(145deg, $Background, darken($Accent, 20%));
       transition: 750ms;
-      width: 18.5%;
-
-      img {
-        width: 99%;
-      }
-
+      width: 18%;
     }
 
     img {
@@ -121,4 +116,31 @@
       height: auto;
     }
   }
+}
+
+.social-links {
+  margin: 2%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2em;
+
+  background: linear-gradient(145deg, $Background2, darken($Background, 5%));
+  box-shadow: 28px 28px 72px #36012b;
+  padding: 30px;
+  border-radius: 25px;
+
+  h2 {
+    color: $Primary;
+  }
+}
+.social-icon {
+  color: $Primary;
+  font-size: 30px;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+.social-icon:hover {
+  transform: scale(1.1);
+  color: $Accent;
 }
