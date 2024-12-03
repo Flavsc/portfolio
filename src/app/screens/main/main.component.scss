@@ -1,146 +1,120 @@
 @import "../../../constants";
 
-.main-right-boxes {
-  margin: 2%;
-  display: grid;
-  display: flex;
-  columns: 2;
-  grid-row: 0;
-  gap: 2%;
-  align-items: center;
-  z-index: 1;
+.cont {
+  margin: 4em 0 0 0;
+}
 
-  .huge-box {
-    background: linear-gradient(145deg, $Background, $Background2);
-    box-shadow: 28px 28px 72px #36012b;
-    padding: 30px;
-    border-radius: 25px;
-    width: 65%;
-    transition: 750ms;
+.center-text {
+  margin: 0 0 1em 0;
+  text-align: center;
+  font-weight: 700;
+  transition: 500ms;
+  z-index: -1;
+  animation: expandCollapse 5s infinite;
+  filter: drop-shadow(5px 0px 10px #131213);
+}
 
-    &:hover {
-      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
-      width: 67%;
-      transition: 750ms;
-    }
+.big-intro-text {
+  font-size: 2.5rem;
+  color: $Primary;
+  font-weight: 800;
+}
+
+.intro-paragraph {
+  font-size: 1.5rem;
+  color: darken($Primary, 10);
+  font-weight: 500;
+}
+
+@keyframes expandCollapse {
+  0% {
+    letter-spacing: 0;
   }
-
-  .side-box {
-    padding: 30px;
-    background-color: $Background2;
-    border-radius: 25px;
-    width: 30%;
-    right: 0;
-    transition: 750ms;
-    text-align: right;
-
-    &:hover {
-      background: linear-gradient(145deg, $Background2, darken($Accent, 20%));
-      width: 32%;
-      transition: 750ms;
-    }
+  50% {
+    letter-spacing: 2px;
+  }
+  100% {
+    letter-spacing: 0;
   }
 }
 
-.main-left-boxes {
-  margin: 2%;
-  display: grid;
+.row-boxes {
+  flex-direction: row;
   display: flex;
-  columns: 2;
-  grid-row: 0;
-  gap: 2%;
-  align-items: center;
-  z-index: 1;
+  justify-content: space-around;
 
-  .huge-box {
-    background: linear-gradient(145deg, $Background, $Background2);
-    box-shadow: 28px 28px 72px #36012b;
-    padding: 30px;
-    border-radius: 25px;
-    width: 65%;
-    transition: 750ms;
-    text-align: right;
-
-    &:hover {
-      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
-      width: 67%;
-      transition: 750ms;
-    }
-  }
-
-  .side-box {
-    right: 0;
-    padding: 30px;
-    background-color: $Background2;
-    border-radius: 25px;
-    width: 30%;
-    transition: 750ms;
-
-    &:hover {
-      background: linear-gradient(145deg, $Background2, darken($Accent, 20%));
-      width: 32%;
-      transition: 750ms;
-    }
-  }
-}
-
-.vertical-boxes {
-  margin: 2%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4%;
-  justify-content: center;
-
-  h1 {
-    text-align: center;
-  }
+  margin: 25px 0 0 0;
+  gap: 25px;
 
   .box {
-    background: linear-gradient(145deg, darken($Background, 5%), $Background2);
-    box-shadow: 28px 28px 72px #36012b;
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.1px);
+    -webkit-backdrop-filter: blur(11.1px);
+
+    width: 33%;
+    height: 600px;
     border-radius: 25px;
-    width: 17%;
-    transition: 750ms;
-    display: flex;
-    flex-direction: column;
+
+    overflow-y: hidden;
+
+    transition: 400ms;
 
     &:hover {
-      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
-      transition: 750ms;
-      width: 18%;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(19.5px);
+      transition: 400ms;
     }
 
-    img {
-      width: 100%;
-      height: auto;
+    .formated-image {
+      height: 500px;
+      width: auto;
     }
   }
 }
 
-.social-links {
-  margin: 2%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 2em;
-
-  background: linear-gradient(145deg, $Background2, darken($Background, 5%));
-  box-shadow: 28px 28px 72px #36012b;
-  padding: 30px;
+.great-box {
+  margin: 1em 0 1em 0;
+  padding: 1em;
   border-radius: 25px;
+  width: 98.2%;
+  height: 800px;
+  overflow: hidden;
+  background-color: $Background;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex: auto;
+  gap: 16px;
 
-  h2 {
-    color: $Primary;
+  .box-left {
+    border-radius: 16px;
+    background-color: $Background2;
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-}
-.social-icon {
-  color: $Primary;
-  font-size: 30px;
-  transition: transform 0.3s ease;
-  text-decoration: none;
-}
-.social-icon:hover {
-  transform: scale(1.1);
-  color: $Accent;
+
+  .box-right {
+    padding: 2em;
+    border-radius: 16px;
+    background-color: $Background2;
+    width: 50%;
+
+    .text-content {
+
+      width: 50%;
+      
+      h2 {
+        color: lighten($Secondary, 12);
+      } 
+
+    }
+  }
 }

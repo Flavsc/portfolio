@@ -1,0 +1,146 @@
+@import "../../../constants";
+
+.main-right-boxes {
+  margin: 2%;
+  display: grid;
+  display: flex;
+  columns: 2;
+  grid-row: 0;
+  gap: 2%;
+  align-items: center;
+  z-index: 1;
+
+  .huge-box {
+    background: linear-gradient(145deg, $Background, $Background2);
+    box-shadow: 28px 28px 72px #00010a;
+    padding: 30px;
+    border-radius: 25px;
+    width: 65%;
+    transition: 750ms;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
+      width: 67%;
+      transition: 750ms;
+    }
+  }
+
+  .side-box {
+    padding: 30px;
+    background-color: $Background2;
+    border-radius: 25px;
+    width: 30%;
+    right: 0;
+    transition: 750ms;
+    text-align: right;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background2, darken($Accent, 20%));
+      width: 32%;
+      transition: 750ms;
+    }
+  }
+}
+
+.main-left-boxes {
+  margin: 2%;
+  display: grid;
+  display: flex;
+  columns: 2;
+  grid-row: 0;
+  gap: 2%;
+  align-items: center;
+  z-index: 1;
+
+  .huge-box {
+    background: linear-gradient(145deg, $Background, $Background2);
+    box-shadow: 28px 28px 72px #00010a;
+    padding: 30px;
+    border-radius: 25px;
+    width: 65%;
+    transition: 750ms;
+    text-align: right;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
+      width: 67%;
+      transition: 750ms;
+    }
+  }
+
+  .side-box {
+    right: 0;
+    padding: 30px;
+    background-color: $Background2;
+    border-radius: 25px;
+    width: 30%;
+    transition: 750ms;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background2, darken($Accent, 20%));
+      width: 32%;
+      transition: 750ms;
+    }
+  }
+}
+
+.vertical-boxes {
+  margin: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4%;
+  justify-content: center;
+
+  h1 {
+    text-align: center;
+  }
+
+  .box {
+    background: linear-gradient(145deg, darken($Background, 5%), $Background2);
+    box-shadow: 28px 28px 72px #00010a;
+    padding: 30px;
+    border-radius: 25px;
+    width: 17%;
+    transition: 750ms;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      background: linear-gradient(145deg, $Background, darken($Accent, 20%));
+      transition: 750ms;
+      width: 18%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.social-links {
+  margin: 2%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2em;
+
+  background: linear-gradient(145deg, $Background2, darken($Background, 5%));
+  box-shadow: 28px 28px 72px #00010a;
+  padding: 30px;
+  border-radius: 25px;
+
+  h2 {
+    color: $Primary;
+  }
+}
+.social-icon {
+  color: $Primary;
+  font-size: 30px;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+.social-icon:hover {
+  transform: scale(1.1);
+  color: $Accent;
+}

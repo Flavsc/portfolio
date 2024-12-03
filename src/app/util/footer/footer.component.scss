@@ -59,7 +59,7 @@
     p {
       margin: 0;
       font-size: 0.9rem;
-      color: $Accent;
+      color: lighten($Accent, 12);
       font-weight: 300;
     }
   }

@@ -1,18 +1,23 @@
 @import "../../../constants";
 
 .navbar {
-  margin: 0.5rem 0;
   border-radius: 25px;
-  background: darken($Background, 3%);
+  background: darken($Background, 5%);
+  
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0rem 1.5rem;
-  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 0rem 2rem 0 2rem;
+  position: fixed;
   transition: 750ms;
+  z-index: 9999;
+
+  box-shadow: 1px 0 30px #0e0e0e;
 
   &:hover {
-    padding: 0.5rem 1.5rem;
     transition: 750ms;
     background: darken($Background, 1%);
 
@@ -20,8 +25,7 @@
       $size: 40px;
       width: $size;
       height: $size;
-      background-color: rgba($Secondary, 0.5);
-      
+      background-color: $Secondary;
     }
   }
 
@@ -31,16 +35,23 @@
     height: auto;
     transition: 750ms;
     border-radius: 40px;
-    
+
     img {
-      border-radius: 40px;
-      width: 100%;
+      width: 40px;
       height: auto;
+
+      transition: 750ms;
+      
+
+      &:hover {
+        transition: 750ms;
+      }
     }
 
     &:hover {
       transition: 750ms;
       width: 75px;
+      height: auto;
     }
   }
 
@@ -51,9 +62,10 @@
 
     span {
       background-color: $Primary;
+      border-radius: 12px;
       height: 3px;
       width: 25px;
-      margin: 4px;
+      margin: 3px;
       transition: 0.3s;
     }
   }
@@ -72,7 +84,7 @@
       &:hover {
         transition: 750ms;
         font-size: 1.1rem;
-        color: $Accent;
+        color: lighten($Primary, 15);
       }
     }
   }
@@ -87,14 +99,15 @@
       top: 100%;
       right: 0;
       background-color: darken($Background, 5%);
-      border-radius: 0 0 15px 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
       flex-direction: column;
       width: 100%;
       max-width: 300px;
       padding: 1rem 0;
       gap: 1rem;
       display: none;
+      z-index: 1000;
 
       li {
         text-align: center;
@@ -102,7 +115,19 @@
 
       &.active {
         display: flex;
+        animation: slideIn 0.5s ease-in-out forwards;
       }
     }
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -2,12 +2,57 @@
 
 /* Estilos Globais */
 
+// System Fonts:
+
+// Honk
+// .honk-<uniquifier> {
+//   font-family: "Honk", system-ui;
+//   font-optical-sizing: auto;
+//   font-weight: 400;
+//   font-style: normal;
+//   font-variation-settings:
+//     "MORF" 15,
+//     "SHLN" 50;
+// }
+
+// Rowdies
+// .rowdies-light {
+//   font-family: "Rowdies", serif;
+//   font-weight: 300;
+//   font-style: normal;
+// }
+// .rowdies-regular {
+//   font-family: "Rowdies", serif;
+//   font-weight: 400;
+//   font-style: normal;
+// }
+// .rowdies-bold {
+//   font-family: "Rowdies", serif;
+//   font-weight: 700;
+//   font-style: normal;
+// }
+
+// Mulish
+// .mulish-<uniquifier> {
+//   font-family: "Mulish", serif;
+//   font-optical-sizing: auto;
+//   font-weight: <weight>;
+//   font-style: normal;
+// }
+
 body {
-  font-family: "Rowdies", serif;
-  background: linear-gradient(127deg, $Background, darken($Background, 12%));
+  font-family: "Mulish", serif;
+  font-style: normal;
+
+  background-image: url(./assets/forest-background2.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+
+  // background: linear-gradient(127deg, $Background, darken($Background, 12%));
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-attachment: fixed;
+
   overflow-x: hidden;
 
   h1 {

@@ -1,31 +1,31 @@
-<div class="main-right-boxes">
-  <div class="huge-box">
-    <h1>habilidades técnicas</h1>
-    <h2>
-      desenvolvedor full-stack, atualmente utilizando typescript, angular e nest
-    </h2>
+<div class="cont">
+  <div class="center-text">
+    <h1 class="big-intro-text">welcome, to 166 studios</h1>
   </div>
-  <div class="side-box">
-    <h1>Clique aqui</h1>
-    <h2>Para ver meus projetos</h2>
+  
+  <div class="row-boxes">
+    <div class="box">
+      <!-- <img class="formated-image" src="../assets/coruja_branca.svg" alt="logo" /> -->
+    </div>
+  
+    <div class="box"></div>
+  
+    <div class="box"></div>
   </div>
-</div>
-
-<div class="vertical-boxes">
-  <div class="box" *ngFor="let card of cards">
-    <h1>{{ card.title }}</h1>
-    <img [src]="card.image" alt="logo" />
+  
+  <div class="great-box">
+    <div class="box-left">
+      <video #videoElement autoplay muted playsinline loop>
+        <source src="../assets/abstract.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="box-right">
+      <div class="text-content">
+        <h1>delving into the intersection between technology and art</h1>
+        <h2>as a developer and artist, i blend creativity with technical expertise. my services range from web development to unique artistic creations.</h2>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="social-links">
-  <h2>media:</h2>
-  <a
-    *ngFor="let link of socialLinks"
-    [href]="link.url"
-    target="_blank"
-    class="social-icon"
-  >
-    <i [class]="link.icon"></i>
-  </a>
+  
 </div>
