@@ -30,27 +30,26 @@
   }
 
   .navbar-logo {
-    padding: 5px;
-    width: 70px;
+    width: 40px;
     height: auto;
     transition: 750ms;
     border-radius: 40px;
-
+    
     img {
-      width: 40px;
+      width: 30px;
       height: auto;
-
+      
       transition: 750ms;
       
-
+      
       &:hover {
         transition: 750ms;
       }
     }
-
+    
     &:hover {
+      width: 42px;
       transition: 750ms;
-      width: 75px;
       height: auto;
     }
   }
@@ -83,7 +82,6 @@
 
       &:hover {
         transition: 750ms;
-        font-size: 1.1rem;
         color: lighten($Primary, 15);
       }
     }

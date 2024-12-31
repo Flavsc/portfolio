@@ -2,17 +2,58 @@
   <div class="center-text">
     <h1 class="big-intro-text">welcome, to 166 studios</h1>
   </div>
-  
+
+  <div class="empty-area"></div>
+
+  <!-- 3 TRANSPARENT BOX -->
+
   <div class="row-boxes">
     <div class="box">
-      <!-- <img class="formated-image" src="../assets/coruja_branca.svg" alt="logo" /> -->
+      <div class="text-content">
+        <h1>about me</h1>
+        <div class="lighter-text">
+          <h2>i'm a full-stack developer</h2>
+        </div>
+        <h2>
+          i'm a computer science student and founder of mazca inc. i work on
+          building efficient applications and exploring design and technology.
+          my interests include ai and data science.
+        </h2>
+        <div class="simple-button">
+          <button><i class="fa fa-share" aria-hidden="true"></i></button>
+        </div>
+      </div>
     </div>
-  
-    <div class="box"></div>
-  
-    <div class="box"></div>
+
+    <div class="box">
+      <h1>check out my spotify playlist</h1>
+
+      <a
+        (click)="
+          openInNewTab(
+            'https://open.spotify.com/playlist/4kcU31wvAtLXdGRjVwPUaX?si=59e16182fcea4578'
+          )
+        "
+      >
+        <img src="../assets/spotify-playlist.jpg" alt="spotify" />
+      </a>
+      <div class="text-content">
+        <div class="lighter-text">
+          <h2>perfect for coding</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="box h-invert">
+      <video #videoElement autoplay muted playsinline loop>
+        <source src="../assets/purplemandala.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
-  
+
+  <!-- DESIGN BOX -->
+
   <div class="great-box">
     <div class="box-left">
       <video #videoElement autoplay muted playsinline loop>
@@ -20,12 +61,45 @@
         Your browser does not support the video tag.
       </video>
     </div>
+
     <div class="box-right">
       <div class="text-content">
+        <p>design</p>
         <h1>delving into the intersection between technology and art</h1>
-        <h2>as a developer and artist, i blend creativity with technical expertise. my services range from web development to unique artistic creations.</h2>
+        <h2>
+          as a developer and artist, i blend creativity with technical
+          expertise. my services range from web development to unique artistic
+          creations.
+        </h2>
+      </div>
+      <div class="simple-button">
+        <button><i class="fa fa-share" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
-  
+
+  <!-- INNOVATE BOX -->
+
+  <div class="great-box">
+    <div class="box-right">
+      <div class="text-content">
+        <p>innovate</p>
+        <h1>your vision, my expertise</h1>
+        <h2>
+          I am dedicated to bringing your ideas to life. Let's collaborate to
+          create something extraordinary.
+        </h2>
+      </div>
+      <div class="simple-button">
+        <button><i class="fa fa-share" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="box-left">
+      <video #videoElement autoplay muted playsinline loop>
+        <source src="../assets/ringround.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
 </div>

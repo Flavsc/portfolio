@@ -57,21 +57,48 @@ body {
 
   h1 {
     color: $Primary;
-    font-weight: 700;
+    font-weight: 900;
     font-style: normal;
+    filter: drop-shadow(3px 0px 10px #131213);
   }
 
   h2,
   a {
     color: $Secondary;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
+    filter: drop-shadow(3px 0px 10px #131213);
   }
 
   p {
     color: $Accent;
     font-weight: 300;
     font-style: normal;
+    filter: drop-shadow(3px 0px 10px #131213);
+  }
+
+  .simple-button {
+
+    button {
+      width: 8em;
+      height: 4em;
+      background-color: $Background;
+      color: $Primary;
+      border: transparent;
+      border-radius: 16px;
+      transition: 500ms;
+      transition-delay: 300ms;
+      filter: drop-shadow(3px 0 12px #2d2d2e);
+      
+      &:hover,
+      &:focus {
+        transition: 500ms;
+        background-color: lighten($Background, 20%);
+        color: $Secondary;
+        filter: drop-shadow(8px 8px 20px #636264);
+      }
+
+    }
   }
 }
 
