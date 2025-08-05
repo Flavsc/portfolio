@@ -1,0 +1,35 @@
+name: CD
+
+on:
+    push:
+        branches:
+            - dev
+
+jobs:
+    build-deploy:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+            pull-requests: read
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22.17.0"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build the project
+              run: npm run build
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
