@@ -1,0 +1,96 @@
+@use "../variables";
+
+.footer {
+    background-color: variables.$gray;
+    padding: variables.$spacing-xl 0 0;
+    margin-top: auto;
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr;
+        gap: variables.$spacing-xl;
+        padding-bottom: variables.$spacing-xl;
+        border-bottom: 1px solid rgba(variables.$white, 0.1);
+    }
+
+    .footer-section {
+        h3 {
+            font-family: variables.$font-secondary;
+            font-size: 2rem;
+            margin-bottom: variables.$spacing-md;
+            background: linear-gradient(
+                45deg,
+                variables.$white,
+                variables.$primary
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h4 {
+            font-family: variables.$font-secondary;
+            font-size: 1.2rem;
+            margin-bottom: variables.$spacing-md;
+            color: variables.$white;
+        }
+
+        p {
+            color: rgba(variables.$white, 0.8);
+            max-width: 300px;
+        }
+    }
+
+    .social-links {
+        display: flex;
+        gap: variables.$spacing-md;
+
+        .social-link {
+            color: variables.$white;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: variables.$primary;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: variables.$spacing-sm;
+
+        input {
+            background: rgba(variables.$white, 0.1);
+            border: none;
+            padding: variables.$spacing-sm;
+            color: variables.$white;
+            font-family: variables.$font-primary;
+            width: 200px;
+
+            &:focus {
+                outline: 1px solid variables.$primary;
+            }
+        }
+
+        .btn-small {
+            padding: variables.$spacing-sm variables.$spacing-md;
+            background: variables.$primary;
+            border: none;
+            color: variables.$white;
+            font-family: variables.$font-primary;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: variables.$secondary;
+            }
+        }
+    }
+
+    .footer-bottom {
+        padding: variables.$spacing-md 0;
+        text-align: center;
+        color: rgba(variables.$white, 0.6);
+        font-size: 0.9rem;
+    }
+}

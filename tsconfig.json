@@ -1,7 +1,37 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    "compilerOptions": {
+        "target": "ES2023",
+        "lib": ["ES2023", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "baseUrl": "./src",
+        "paths": {
+            "@assets/*": ["app/assets/*"],
+            "@components/*": ["app/web/components/*"],
+            "@styles/*": ["app/web/styles/*"],
+            "@pages/*": ["app/web/pages/*"],
+            "@router/*": ["app/web/router/*"],
+            "@hooks/*": ["app/utils/hooks/*"],
+            "@validation/*": ["app/utils/validation/*"],
+            "@constants/*": ["app/utils/constants/*"],
+            "@functions/*": ["app/utils/functions/*"],
+            "@formatters/*": ["app/utils/formatters/*"],
+            "@interfaces/*": ["api/shared/interfaces/*"],
+            "@integration/*": ["api/integration/modules/*"],
+            "@stores/*": ["api/integration/stores/*"],
+            "@enums/*": ["api/shared/enums/*"]
+        },
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*", "*.d.ts"],
+    "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,0 +1,171 @@
+@use "variables";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap');
+
+
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 300;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-300.woff2")
+        format("woff2");
+}
+/* outfit-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-regular.woff2")
+        format("woff2");
+}
+/* outfit-500 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 500;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-500.woff2")
+        format("woff2");
+}
+/* outfit-600 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 600;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-600.woff2")
+        format("woff2");
+}
+/* outfit-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 700;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-700.woff2")
+        format("woff2");
+}
+/* outfit-900 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 900;
+    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-900.woff2")
+        format("woff2");
+}
+
+/* kanit-300 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: 300;
+    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-300.woff2")
+        format("woff2");
+}
+
+/* kanit-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: 400;
+    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-regular.woff2")
+        format("woff2");
+}
+
+/* kanit-500 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: 500;
+    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-500.woff2")
+        format("woff2");
+}
+
+/* kanit-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: 700;
+    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-700.woff2")
+        format("woff2");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: variables.$font-primary;
+    color: variables.$white;
+    line-height: 1.6;
+    background-color: variables.$black;
+    overflow-x: hidden;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 variables.$spacing-md;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: variables.$spacing-xl;
+    text-align: center;
+
+    .accent {
+        color: variables.$primary;
+    }
+}
+
+.btn {
+    padding: variables.$spacing-sm variables.$spacing-lg;
+    border: 2px solid variables.$primary;
+    background: transparent;
+    color: variables.$white;
+    font-family: variables.$font-primary;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    letter-spacing: 1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: variables.$primary;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: -1;
+    }
+
+    &:hover {
+        color: variables.$white;
+
+        &::before {
+            transform: translateX(0);
+        }
+    }
+}

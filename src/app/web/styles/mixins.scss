@@ -1,0 +1,49 @@
+@use "variables";
+
+@mixin glass-effect {
+    background: variables.$gradient-glass;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(variables.$white, 0.1);
+    border-radius: variables.$border-radius;
+}
+
+@mixin hover-lift {
+    transition:
+        transform variables.$transition-fast,
+        box-shadow variables.$transition-fast;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: variables.$shadow-md;
+    }
+}
+
+@mixin fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity variables.$transition-medium,
+        transform variables.$transition-medium;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@mixin tilt-effect {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform variables.$transition-fast;
+
+    &:hover {
+        transform: rotateX(5deg) rotateY(5deg);
+    }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: variables.$container-width;
+  margin: 0 auto;
+  padding: 0 variables.$container-padding;
+}

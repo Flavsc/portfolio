@@ -1,0 +1,128 @@
+@use "../variables";
+
+// Container principal da HUD
+.hud-frame {
+    z-index: 9999;
+    pointer-events: none; // Permite clicar "através" da moldura
+  
+  // Elemento filho com interatividade
+  * {
+    pointer-events: auto;
+  }
+}
+
+// Elementos decorativos (linhas, cantos)
+.hud-decoration {
+  position: fixed;
+  background-color: variables.$primary;
+  opacity: 0.4;
+  box-shadow: 0 0 8px rgba(variables.$primary, 0.7);
+  animation: hud-boot-sequence 1.5s ease-out;
+
+  &.top-line, &.bottom-line { height: 1px; left: 5%; width: 90%; }
+  &.left-line, &.right-line { width: 1px; top: 5%; height: 90%; }
+  
+  &.top-line { top: 2rem; }
+  &.bottom-line { bottom: 2rem; }
+  &.left-line { left: 2rem; }
+  &.right-line { right: 2rem; }
+
+  &.corner {
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-style: solid;
+    border-color: variables.$primary;
+    
+    &.top-left { top: 2rem; left: 2rem; border-width: 2px 0 0 2px; }
+    &.top-right { top: 2rem; right: 2rem; border-width: 2px 2px 0 0; }
+    &.bottom-left { bottom: 2rem; left: 2rem; border-width: 0 0 2px 2px; }
+    &.bottom-right { bottom: 2rem; right: 2rem; border-width: 0 2px 2px 0; }
+  }
+}
+
+// Estilo base para os "módulos" de conteúdo
+.hud-module-wrapper {
+  position: fixed;
+  padding: 1rem;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  color: variables.$text-secondary;
+  animation: hud-content-fade-in 1s ease-out 1s backwards;
+
+  // Linhas que "saem" dos módulos
+  &::before {
+    content: '';
+    position: absolute;
+    background: linear-gradient(to right, rgba(variables.$primary, 0), rgba(variables.$primary, 0.5));
+  }
+}
+
+// Posicionamento e estilo de cada módulo
+.top-left {
+  top: 2.5rem;
+  left: 3rem;
+  &::before { top: 50%; right: -50px; width: 50px; height: 1px; transform: translateY(-50%); }
+  
+  .logo { font-size: 1.2rem; font-weight: 700; color: variables.$white; text-decoration: none; letter-spacing: 1px; }
+  .status { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; margin-top: 0.5rem; }
+  .status-light {
+    width: 8px; height: 8px; border-radius: 50%; background-color: #27c93f;
+    box-shadow: 0 0 5px #27c93f; animation: pulse-green 2s infinite;
+  }
+}
+
+.top-right {
+  top: 2.5rem;
+  right: 3rem;
+  &::before { top: 50%; left: -50px; width: 50px; height: 1px; transform: translateY(-50%) scaleX(-1); }
+
+  .nav-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 2rem; }
+  .nav-item {
+    color: variables.$text-secondary; text-decoration: none; position: relative;
+    padding-bottom: 5px; transition: color 0.2s ease;
+    &::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+      background-color: variables.$primary; transition: all 0.3s ease;
+    }
+    &:hover, &.active {
+      color: variables.$white;
+      &::after { left: 0; width: 100%; }
+    }
+  }
+}
+
+.bottom-left {
+  bottom: 2.5rem;
+  left: 3rem;
+  &::before { bottom: 50%; right: -50px; width: 50px; height: 1px; transform: translateY(50%); }
+
+  .system-info p { margin: 0.2rem 0; font-size: 0.8rem; }
+}
+
+.bottom-right {
+  bottom: 2.5rem;
+  right: 3rem;
+  &::before { bottom: 50%; left: -50px; width: 50px; height: 1px; transform: translateY(50%) scaleX(-1); }
+  
+  .social-list {
+    list-style: none; padding: 0; margin: 0; display: flex; align-items: center; gap: 1rem;
+    a { color: variables.$text-secondary; transition: color 0.2s ease; &:hover { color: variables.$white; } }
+  }
+}
+
+
+// Animações
+@keyframes hud-boot-sequence {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 0.4; }
+}
+
+@keyframes hud-content-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; box-shadow: 0 0 5px #27c93f; }
+  50% { opacity: 0.6; box-shadow: 0 0 10px #27c93f; }
+}

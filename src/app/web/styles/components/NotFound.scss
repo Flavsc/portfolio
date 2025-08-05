@@ -1,0 +1,62 @@
+// src/styles/pages/NotFound.scss
+@use "../variables";
+
+.not-found {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: variables.$black;
+    color: variables.$white;
+    padding: variables.$spacing-xl;
+
+    &__content {
+        text-align: center;
+        max-width: 600px;
+
+        h1 {
+            font-size: 8rem;
+            font-weight: 900;
+            margin-bottom: variables.$spacing-md;
+            font-family: variables.$font-secondary;
+
+            @media (max-width: 768px) {
+                font-size: 6rem;
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: variables.$spacing-md;
+            color: variables.$primary;
+
+            @media (max-width: 768px) {
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: variables.$spacing-xl;
+            opacity: 0.8;
+        }
+
+        .primary-button {
+            background: transparent;
+            border: 2px solid variables.$primary;
+            color: variables.$white;
+            padding: variables.$spacing-sm variables.$spacing-xl;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: variables.$primary;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px -5px rgba(variables.$primary, 0.5);
+            }
+        }
+    }
+}

@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import ToasterContainer from "@components/ToasterContainer";
+import AppRoutes from "@router/index.tsx";
+import { useThemeDetector } from "@hooks/useThemeDetector.ts";
+import CookieDisabled from "@components/validations/CookieDisabled.tsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [cookiesEnabled, setCookiesEnabled] = useState(true);
+    const isDarkTheme = useThemeDetector();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        const checkCookieSupport = () => {
+            document.cookie = "testcookie; SameSite=Strict";
+            const isCookieEnabled =
+                document.cookie.indexOf("testcookie") !== -1;
+            document.cookie =
+                "testcookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
+            return isCookieEnabled;
+        };
+
+        if (!checkCookieSupport()) {
+            setCookiesEnabled(false);
+            setIsLoading(false);
+            return;
+        }
+
+    }, []);
+
+    useEffect(() => {
+        const favicon = document.getElementById(
+            "favicon"
+        ) as HTMLLinkElement | null;
+        if (favicon)
+            favicon.href = isDarkTheme ? "/WhiteLogo.svg" : "/BlackLogo.svg";
+    }, [isDarkTheme]);
+
+    if (!cookiesEnabled) {
+        return <CookieDisabled />;
+    }
+
+    return (
+        <BrowserRouter>
+            <ToasterContainer />
+            <AppRoutes isLoading={isLoading} />
+        </BrowserRouter>
+    );
 }
-
-export default App
