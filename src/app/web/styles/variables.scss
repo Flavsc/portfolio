@@ -1,6 +1,6 @@
 // Colors
 $primary: #cebcd6;
-$secondary: #5F4BB6;
+$secondary: #5f4bb6;
 $black: #0f0220;
 $white: #f2eef5;
 $gray: #1f1e22;
@@ -14,9 +14,10 @@ $gradient-dark: linear-gradient(135deg, $black, $gray);
 $gradient-glass: linear-gradient(135deg, rgba($white, 0.1), rgba($white, 0.05));
 
 // Typography
-$font-primary: "Space Mono", monospace;
-$font-secondary: "Space Grotesk", sans-serif;
-
+// $font-primary: "Space Mono", monospace;
+// $font-secondary: "Space Grotesk", sans-serif;
+$font-primary: 'Noto Sans', sans-serif;
+$font-secondary: 'Workbench', sans-serif;
 
 // Breakpoints
 $mobile: 576px;
