@@ -1,98 +1,98 @@
 @use "variables";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Workbench&display=swap');
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 300;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-300.woff2")
-        format("woff2");
-}
-/* outfit-regular - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 400;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-regular.woff2")
-        format("woff2");
-}
-/* outfit-500 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 500;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-500.woff2")
-        format("woff2");
-}
-/* outfit-600 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 600;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-600.woff2")
-        format("woff2");
-}
-/* outfit-700 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 700;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-700.woff2")
-        format("woff2");
-}
-/* outfit-900 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Outfit";
-    font-style: normal;
-    font-weight: 900;
-    src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-900.woff2")
-        format("woff2");
-}
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 300;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-300.woff2")
+//         format("woff2");
+// }
+// /* outfit-regular - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-regular.woff2")
+//         format("woff2");
+// }
+// /* outfit-500 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 500;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-500.woff2")
+//         format("woff2");
+// }
+// /* outfit-600 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 600;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-600.woff2")
+//         format("woff2");
+// }
+// /* outfit-700 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 700;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-700.woff2")
+//         format("woff2");
+// }
+// /* outfit-900 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Outfit";
+//     font-style: normal;
+//     font-weight: 900;
+//     src: url("@assets/fonts/outfit-v14-latin/outfit-v14-latin-900.woff2")
+//         format("woff2");
+// }
 
-/* kanit-300 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Kanit";
-    font-style: normal;
-    font-weight: 300;
-    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-300.woff2")
-        format("woff2");
-}
+// /* kanit-300 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Kanit";
+//     font-style: normal;
+//     font-weight: 300;
+//     src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-300.woff2")
+//         format("woff2");
+// }
 
-/* kanit-regular - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Kanit";
-    font-style: normal;
-    font-weight: 400;
-    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-regular.woff2")
-        format("woff2");
-}
+// /* kanit-regular - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Kanit";
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-regular.woff2")
+//         format("woff2");
+// }
 
-/* kanit-500 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Kanit";
-    font-style: normal;
-    font-weight: 500;
-    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-500.woff2")
-        format("woff2");
-}
+// /* kanit-500 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Kanit";
+//     font-style: normal;
+//     font-weight: 500;
+//     src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-500.woff2")
+//         format("woff2");
+// }
 
-/* kanit-700 - latin */
-@font-face {
-    font-display: swap;
-    font-family: "Kanit";
-    font-style: normal;
-    font-weight: 700;
-    src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-700.woff2")
-        format("woff2");
-}
+// /* kanit-700 - latin */
+// @font-face {
+//     font-display: swap;
+//     font-family: "Kanit";
+//     font-style: normal;
+//     font-weight: 700;
+//     src: url("@assets/fonts/kanit-v16-latin/kanit-v16-latin-700.woff2")
+//         format("woff2");
+// }
 
 * {
     margin: 0;
