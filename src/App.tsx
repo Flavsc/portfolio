@@ -6,7 +6,6 @@ import { useThemeDetector } from "@hooks/useThemeDetector.ts";
 import CookieDisabled from "@components/validations/CookieDisabled.tsx";
 
 export default function App() {
-    const [isLoading, setIsLoading] = useState(true);
     const [cookiesEnabled, setCookiesEnabled] = useState(true);
     const isDarkTheme = useThemeDetector();
 
@@ -22,7 +21,6 @@ export default function App() {
 
         if (!checkCookieSupport()) {
             setCookiesEnabled(false);
-            setIsLoading(false);
             return;
         }
 
@@ -33,7 +31,7 @@ export default function App() {
             "favicon"
         ) as HTMLLinkElement | null;
         if (favicon)
-            favicon.href = isDarkTheme ? "/WhiteLogo.svg" : "/BlackLogo.svg";
+            favicon.href = isDarkTheme ? "/portfolio/WhiteLogo.svg" : "/portfolio/BlackLogo.svg";
     }, [isDarkTheme]);
 
     if (!cookiesEnabled) {
@@ -43,7 +41,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <ToasterContainer />
-            <AppRoutes isLoading={isLoading} />
+            <AppRoutes />
         </BrowserRouter>
     );
 }

@@ -15,19 +15,15 @@ export default function Hero() {
     return (
         <section className="hero">
             <div className="hero-grid-background"></div>
-
             <HeroCanvas />
-
             <div className="hero-content">
                 <h1 className="hero-title" data-text="166studios">
                     166studios
                 </h1>
             </div>
-            
             <div className="hud-panel-wrapper">
               <HudPanel />
             </div>
-
             <motion.button
                 onClick={scrollToContent}
                 className="scroll-indicator"

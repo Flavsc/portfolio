@@ -1,132 +1,141 @@
-@use "sass:color";
 @use "../variables";
-@use "../animations";
+@use "../mixins";
 
-.about {
-    margin: 6em 0 0 0;
-    padding: variables.$spacing-xl * 2 0;
-    background: linear-gradient(
-        45deg,
-        variables.$black,
-        color.adjust(variables.$primary, $lightness: -40%)
-    );
+.about-page-container {
+  @include mixins.container;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120px;
+  padding-bottom: 50px;
+}
+
+.about-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  width: 100%;
+
+  // CORREÇÃO PARA MOBILE: Muda para layout de uma coluna
+  @media (max-width: variables.$tablet) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// Painel visual à esquerda
+.about-visual-panel {
+  position: relative;
+  border: 1px solid rgba(variables.$primary, 0.3);
+  background: rgba(variables.$primary, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 400px;
+
+  .visual-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(variables.$primary, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(variables.$primary, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .visual-scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: variables.$primary;
+    box-shadow: 0 0 15px variables.$primary;
+    animation: scan 4s linear infinite;
+  }
+
+  .visual-rings {
     position: relative;
-    overflow: hidden;
+    width: 150px;
+    height: 150px;
 
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-                circle at 20% 30%,
-                rgba(variables.$primary, 0.1) 0%,
-                transparent 50%
-            ),
-            radial-gradient(
-                circle at 80% 70%,
-                rgba(variables.$primary, 0.1) 0%,
-                transparent 50%
-            );
-        pointer-events: none;
+    .ring {
+      position: absolute;
+      inset: 0;
+      border: 2px solid variables.$primary;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: rotate-ring 6s linear infinite;
+
+      &:nth-child(2) {
+        transform: rotateX(70deg);
+        animation-delay: -2s;
+      }
+      &:nth-child(3) {
+        transform: rotateY(70deg);
+        animation-delay: -4s;
+      }
     }
+  }
+  
+  .visual-label {
+    position: absolute;
+    bottom: 1rem;
+    font-family: variables.$font-primary;
+    font-size: 0.8rem;
+    color: variables.$text-secondary;
+    letter-spacing: 2px;
+  }
+}
 
-    .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: variables.$spacing-xl * 2;
-        align-items: center;
-        position: relative;
-        z-index: 1;
+// Painel de texto à direita
+.about-text-panel {
+  .about-title {
+    font-family: variables.$font-secondary;
+    font-size: 3rem;
+    font-weight: 700;
+    color: variables.$white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(variables.$primary, 0.7);
 
-        @media (max-width: variables.$desktop) {
-            grid-template-columns: 1fr;
-            gap: variables.$spacing-xl;
-        }
+    .title-bracket {
+      color: variables.$primary;
     }
-
-    .about-text {
-        // --- CORREÇÃO APLICADA AQUI ---
-        @media (max-width: variables.$desktop) {
-            order: 1; // Garante que o texto venha primeiro em telas menores
-            text-align: center;
-        }
-
-        .section-title {
-            @media (max-width: variables.$mobile) {
-                font-size: 2.5rem;
-            }
-        }
-
-        p {
-            margin-bottom: variables.$spacing-lg;
-            font-size: 1.1rem;
-            color: rgba(variables.$white, 0.9);
-            line-height: 1.8;
-        }
+    // CORREÇÃO PARA MOBILE: Reduz o tamanho do título
+    @media (max-width: variables.$mobile) {
+      font-size: 2.2rem;
     }
+  }
 
-    .stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: variables.$spacing-lg;
-        margin-top: variables.$spacing-xl;
+  .about-subtitle {
+    font-family: variables.$font-primary;
+    font-size: 1rem;
+    color: variables.$text-secondary;
+    margin-bottom: 2rem;
+  }
 
-        @media (max-width: variables.$tablet) {
-            grid-template-columns: 1fr;
-        }
-
-        .stat {
-            padding: variables.$spacing-lg;
-            background: rgba(variables.$gray, 0.2);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(variables.$white, 0.1);
-            transition: all 0.3s ease;
-
-            &:hover {
-                transform: translateY(-5px) scale(1.05);
-                border-color: variables.$primary;
-                @extend .animate-glow;
-            }
-
-            .number {
-                display: block;
-                font-size: 2.5rem;
-                font-weight: 700;
-                color: variables.$primary;
-                margin-bottom: variables.$spacing-xs;
-            }
-
-            .label {
-                font-size: 0.9rem;
-                color: rgba(variables.$white, 0.8);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-            }
-        }
+  .about-text-body {
+    font-family: variables.$font-primary;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: variables.$text-primary;
+    
+    p {
+      margin-bottom: 1.5rem;
+      max-width: 60ch;
     }
+  }
+}
 
-    .about-image {
-        position: relative;
-        border-radius: 24px;
-        overflow: hidden;
+// Animações
+@keyframes scan {
+  from { top: -10px; }
+  to { top: 100%; }
+}
 
-        // --- CORREÇÃO APLICADA AQUI ---
-        @media (max-width: variables.$desktop) {
-            order: 2; // Garante que a imagem venha depois do texto em telas menores
-        }
-
-        img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-
-            @media (max-width: variables.$tablet) {
-                height: 400px;
-            }
-        }
-    }
+@keyframes rotate-ring {
+  from { transform: rotate(0deg) rotateX(0deg); }
+  to { transform: rotate(360deg) rotateX(360deg); }
 }

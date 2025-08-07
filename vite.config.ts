@@ -5,9 +5,8 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import analyze from "rollup-plugin-analyzer";
 import compression from "vite-plugin-compression";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    base: "/", // Base path para o build
+    base: "/portfolio/",
     plugins: [
         // Suporte a React com SWC para compilação rápida
         react({

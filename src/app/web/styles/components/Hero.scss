@@ -40,7 +40,6 @@
     z-index: 2;
   }
 
-  // Efeito Glitch para o título
   .hero-title {
     font-family: variables.$font-secondary;
     font-size: 10rem;
@@ -73,7 +72,12 @@
     }
 
     @media (max-width: variables.$tablet) {
-        font-size: 7rem;
+      font-size: 7rem;
+    }
+
+    @media (max-width: variables.$mobile) {
+      font-size: 4.5rem;
+      letter-spacing: 0.5rem;
     }
   }
   
@@ -87,20 +91,10 @@
     color: variables.$white;
     cursor: pointer;
     z-index: 10;
-    animation: bounce 2s infinite;
-
-    svg {
-        filter: drop-shadow(0 0 10px rgba(variables.$primary, 0.5));
-        transition: color 0.3s ease;
-    }
-
-    &:hover {
-        color: variables.$primary;
-    }
   }
 }
 
-// Animações para a grelha e para o efeito glitch
+// Animações
 @keyframes pan-grid {
   from { background-position: 0 0; }
   to { background-position: 50px 50px; }
@@ -108,14 +102,10 @@
 
 @keyframes glitch-anim-1 {
   0% { clip: rect(42px, 9999px, 44px, 0); }
-  5% { clip: rect(12px, 9999px, 60px, 0); }
-  /* ... mais passos de animação ... */
   100% { clip: rect(90px, 9999px, 98px, 0); }
 }
 
 @keyframes glitch-anim-2 {
   0% { clip: rect(2px, 9999px, 99px, 0); }
-  3% { clip: rect(79px, 9999px, 30px, 0); }
-  /* ... mais passos de animação ... */
   100% { clip: rect(50px, 9999px, 130px, 0); }
 }

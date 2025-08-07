@@ -14,7 +14,7 @@ export default function HeroCanvas() {
         <pointLight color="white" position={[10, 10, 10]} intensity={15} />
         <Suspense fallback={null}>
             <Scene />
-            <Environment files="/studio_small_03_1k.hdr" />
+            <Environment files="/portfolio/studio_small_03_1k.hdr" />
         </Suspense>
       </Canvas>
     </div>

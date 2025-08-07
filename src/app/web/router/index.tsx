@@ -7,23 +7,22 @@ import MainLayout from "@components/layout/Layout";
 const Home = lazy(() => import("@pages/Home.tsx"));
 const About = lazy(() => import("@pages/About.tsx"));
 const NotFound = lazy(() => import("@components/NotFound.tsx"));
+const Projects = lazy(() => import("@pages/Projects"));
+const Contact = lazy(() => import("@pages/Contact"));
 
-interface AppRoutesProps {
-    isLoading: boolean;
-}
-
-export default function AppRoutes({ isLoading }: AppRoutesProps) {
+export default function AppRoutes() {
     return (
         <Suspense fallback={<div className={"spinner-container"}><LoadSpinner /></div>}>
             <Routes>
 
                 <Route element={<MainLayout />}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<About />} />
+                    <Route path="/portfolio/" element={<Home />} />
+                    <Route path="/portfolio/about" element={<About />} />
+                    <Route path="/portfolio/projects" element={<Projects />} />
+                    <Route path="/portfolio/contact" element={<Contact />} />
                 </Route>
 
-                <Route path="*" element={<NotFound />} />
+                <Route path="/portfolio/*" element={<NotFound />} />
             </Routes>
         </Suspense>
     );

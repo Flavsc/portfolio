@@ -4,10 +4,10 @@ import "@styles/components/Navbar.scss";
 
 // Links da navegação
 const navLinks = [
-    { to: "/", text: "main" },
-    { to: "/about", text: "about" },
-    { to: "/projects", text: "projects" },
-    { to: "/contact", text: "contact" },
+    { to: "/portfolio/", text: "main" },
+    { to: "/portfolio/about", text: "about" },
+    { to: "/portfolio/projects", text: "projects" },
+    { to: "/portfolio/contact", text: "contact" },
 ];
 
 export default function Navbar() {
@@ -26,7 +26,7 @@ export default function Navbar() {
             {/* -- Módulo Superior Esquerdo: Logo e Status -- */}
             <div className="hud-module-wrapper top-left">
                 <div className="module-content">
-                    <NavLink to="/" className="logo">166studios</NavLink>
+                    <NavLink to="/portfolio/" className="logo">166studios</NavLink>
                     <div className="status">
                         <span className="status-light"></span>
                         <span>online</span>
