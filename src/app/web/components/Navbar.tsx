@@ -29,7 +29,7 @@ export default function Navbar() {
                     <NavLink to="/portfolio/" className="logo">166studios</NavLink>
                     <div className="status">
                         <span className="status-light"></span>
-                        <span>online</span>
+                        <span>ONLINE</span>
                     </div>
                 </div>
             </div>
@@ -50,8 +50,8 @@ export default function Navbar() {
             {/* -- Módulo Inferior Esquerdo: Informação do Sistema -- */}
             <div className="hud-module-wrapper bottom-left">
                 <div className="module-content system-info">
-                   <p>ui_version: 2.1.0</p>
-                   <p>render_mode: R3F_OPTIMIZED</p>
+                   <p>UI_VERSION: 2.1.0</p>
+                   <p>RENDER_MODE: R3F_OPTIMIZED</p>
                 </div>
             </div>
             
@@ -59,9 +59,10 @@ export default function Navbar() {
             <div className="hud-module-wrapper bottom-right">
                 <div className="module-content">
                     <ul className="social-list">
-                        <li><a href="#"><Github size={16} /></a></li>
-                        <li><a href="#"><Linkedin size={16} /></a></li>
-                        <li><a href="#"><Mail size={16} /></a></li>
+                        {/* CORREÇÃO: Links atualizados */}
+                        <li><a href="https://github.com/Flavsc" target="_blank" rel="noopener noreferrer"><Github size={16} /></a></li>
+                        <li><a href="https://www.linkedin.com/in/flavio-carvalho-382b82263/" target="_blank" rel="noopener noreferrer"><Linkedin size={16} /></a></li>
+                        <li><a href="mailto:flaviocarvalho.brz@gmail.com"><Mail size={16} /></a></li>
                     </ul>
                 </div>
             </div>

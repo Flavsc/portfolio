@@ -4,11 +4,11 @@ import { Github, Linkedin, Copy, Check, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import "@styles/components/Contact.scss";
 
-// Variantes de animação para a entrada do módulo
+// Variantes de animação
 const moduleVariants: Variants = {
   hidden: { opacity: 0, filter: 'blur(10px)', scale: 0.9 },
   visible: {
-    opacity: 0.5,
+    opacity: 1,
     filter: 'blur(0px)',
     scale: 1,
     transition: {
@@ -26,7 +26,8 @@ const itemVariants: Variants = {
 
 export default function Contact() {
     const [emailCopied, setEmailCopied] = useState(false);
-    const userEmail = "flavsc.brz@gmail.com";
+    // CORREÇÃO: E-mail atualizado
+    const userEmail = "flaviocarvalho.brz@gmail.com";
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText(userEmail);
@@ -52,8 +53,8 @@ export default function Contact() {
 
                 {/* -- Cabeçalho -- */}
                 <motion.header className="module-header" variants={itemVariants}>
-                    <h1 className="module-title">CONTATO</h1>
-                    <p className="module-subtitle">envie um email pela caixa</p>
+                    <h1 className="module-title">ESTABELECER_CONEXÃO</h1>
+                    <p className="module-subtitle">A interface está pronta para receber a sua transmissão.</p>
                 </motion.header>
 
                 {/* -- Formulário (Ação Principal) -- */}
@@ -80,17 +81,18 @@ export default function Contact() {
 
                 {/* -- Ações Secundárias e Links -- */}
                 <motion.footer className="module-footer" variants={itemVariants}>
-                    <p className="footer-title"> LINKS</p>
+                    <p className="footer-title">// CANAIS_ALTERNATIVOS</p>
                     <div className="alternative-channels">
                         <button className="channel-action" onClick={handleCopyEmail}>
                             {emailCopied ? <Check size={16} className="success-icon" /> : <Copy size={16} />}
                             <span>Copiar E-mail</span>
                         </button>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="channel-action">
+                        {/* CORREÇÃO: Links atualizados */}
+                        <a href="https://github.com/Flavsc" target="_blank" rel="noopener noreferrer" className="channel-action">
                             <Github size={16} />
                             <span>GitHub</span>
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="channel-action">
+                        <a href="https://www.linkedin.com/in/flavio-carvalho-382b82263/" target="_blank" rel="noopener noreferrer" className="channel-action">
                             <Linkedin size={16} />
                             <span>LinkedIn</span>
                         </a>

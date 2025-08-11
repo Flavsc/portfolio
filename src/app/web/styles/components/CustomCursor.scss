@@ -1,0 +1,55 @@
+@use "../variables";
+
+// CORREÇÃO: Força a ocultação do cursor padrão em todos os elementos
+body, a, button, [role="button"], input, textarea {
+  cursor: none !important;
+}
+
+// O anel exterior que segue com atraso
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid variables.$primary;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, border-width 0.3s ease;
+  will-change: transform, width, height; // Otimização de performance
+
+  &.hover {
+    width: 50px;
+    height: 50px;
+    border-width: 1px;
+    border-color: variables.$white;
+    transform: translate(-25px, -25px); // Ajusta a posição ao centro
+  }
+}
+
+// O ponto central que segue o rato instantaneamente
+.custom-cursor-dot {
+  position: fixed;
+  top: -2px; // Offset para centrar
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  background-color: variables.$primary;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  box-shadow: 0 0 10px variables.$primary;
+  will-change: transform;
+}
+
+// Esconde o cursor customizado em dispositivos de toque, onde não faz sentido
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor-ring, .custom-cursor-dot {
+    display: none;
+  }
+  // Restaura o cursor padrão em dispositivos de toque
+  body, a, button, [role="button"], input, textarea {
+    cursor: auto !important;
+  }
+}

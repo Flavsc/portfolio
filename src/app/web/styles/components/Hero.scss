@@ -8,7 +8,7 @@
   position: relative;
   overflow: hidden;
   background-color: variables.$black;
-
+  
   .hero-grid-background {
     position: absolute;
     inset: 0;
@@ -31,8 +31,45 @@
     z-index: 3;
     text-align: center;
     user-select: none;
+    padding: 2rem;
   }
   
+  .hero-title {
+    font-family: variables.$font-secondary;
+    font-size: 10rem;
+    font-weight: 700;
+    // O texto em si é transparente para revelar o fundo
+    color: transparent; 
+    text-transform: lowercase; // Garante que fica em caixa baixa
+    position: relative;
+    letter-spacing: -0.2rem; // Um toque de design, juntando um pouco as letras
+
+    // A magia acontece aqui: um gradiente radial segue o rato
+    background-image: radial-gradient(
+      circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      variables.$white 0%,
+      rgba(variables.$white, 0.3) 60%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    // Camadas de sombra para dar profundidade e um brilho subtil
+    text-shadow: 
+      0 0 20px rgba(variables.$primary, 0.2),
+      0 0 40px rgba(variables.$black, 0.5);
+
+    transition: all 0.2s ease-out; // Suaviza a resposta a movimentos rápidos
+    
+    // Media queries para responsividade
+    @media (max-width: variables.$tablet) {
+      font-size: 7rem;
+    }
+    @media (max-width: variables.$mobile) {
+      font-size: 4rem;
+    }
+  }
+
   .hud-panel-wrapper {
     position: absolute;
     bottom: 2rem;
@@ -40,57 +77,25 @@
     z-index: 2;
   }
 
-  .hero-title {
-    font-family: variables.$font-secondary;
-    font-size: 10rem;
-    font-weight: 900;
-    color: variables.$white;
-    text-transform: uppercase;
-    position: relative;
-    text-shadow: 0 0 10px rgba(variables.$primary, 0.5);
-
-    &::before, &::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: variables.$black;
-      overflow: hidden;
-      clip: rect(0, 900px, 0, 0);
-    }
-    &::before {
-      left: 2px;
-      text-shadow: -2px 0 variables.$primary;
-      animation: glitch-anim-1 2s infinite linear alternate-reverse;
-    }
-    &::after {
-      left: -2px;
-      text-shadow: -2px 0 #00ffff, 2px 2px variables.$primary;
-      animation: glitch-anim-2 3s infinite linear alternate-reverse;
-    }
-
-    @media (max-width: variables.$tablet) {
-      font-size: 7rem;
-    }
-
-    @media (max-width: variables.$mobile) {
-      font-size: 4.5rem;
-      letter-spacing: 0.5rem;
-    }
-  }
-  
   .scroll-indicator {
     position: absolute;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10;
     background: none;
     border: none;
     color: variables.$white;
     cursor: pointer;
-    z-index: 10;
+    animation: bounce 2s infinite;
+
+    svg {
+        filter: drop-shadow(0 0 10px rgba(variables.$primary, 0.5));
+        transition: color 0.3s ease;
+    }
+    &:hover {
+        color: variables.$primary;
+    }
   }
 }
 
@@ -100,12 +105,8 @@
   to { background-position: 50px 50px; }
 }
 
-@keyframes glitch-anim-1 {
-  0% { clip: rect(42px, 9999px, 44px, 0); }
-  100% { clip: rect(90px, 9999px, 98px, 0); }
-}
-
-@keyframes glitch-anim-2 {
-  0% { clip: rect(2px, 9999px, 99px, 0); }
-  100% { clip: rect(50px, 9999px, 130px, 0); }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
 }
