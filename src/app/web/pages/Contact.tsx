@@ -53,8 +53,8 @@ export default function Contact() {
 
                 {/* -- Cabeçalho -- */}
                 <motion.header className="module-header" variants={itemVariants}>
-                    <h1 className="module-title">ESTABELECER_CONEXÃO</h1>
-                    <p className="module-subtitle">A interface está pronta para receber a sua transmissão.</p>
+                    <h1 className="module-title">contato</h1>
+                    <p className="module-subtitle">mande uma mensagem.</p>
                 </motion.header>
 
                 {/* -- Formulário (Ação Principal) -- */}
@@ -62,18 +62,18 @@ export default function Contact() {
                     <form className="contact-form">
                         <div className="form-field">
                             <input type="text" id="name" name="name" required />
-                            <label htmlFor="name">Seu Nome / Organização</label>
+                            <label htmlFor="name">seu Nome / organização</label>
                         </div>
                         <div className="form-field">
                             <input type="email" id="email" name="email" required />
-                            <label htmlFor="email">Seu Endereço de E-mail</label>
+                            <label htmlFor="email">seu e-mail</label>
                         </div>
                         <div className="form-field">
                             <textarea id="message" name="message" rows={5} required></textarea>
-                            <label htmlFor="message">Sua Mensagem</label>
+                            <label htmlFor="message">sua mensagem</label>
                         </div>
                         <button type="submit" className="submit-button">
-                            <span>Enviar</span>
+                            <span>enviar</span>
                             <ArrowRight size={20} />
                         </button>
                     </form>
