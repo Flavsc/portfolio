@@ -1,8 +1,11 @@
-import { useState } from 'react';
+// portfolio/src/app/web/pages/Contact.tsx
+
+import { useState, FormEvent } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Github, Linkedin, Copy, Check, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
-import "@styles/components/Contact.scss";
+import axios from 'axios'; // Importe o axios
+import '@styles/components/Contact.scss';
 
 // Variantes de animação
 const moduleVariants: Variants = {
@@ -25,80 +28,151 @@ const itemVariants: Variants = {
 };
 
 export default function Contact() {
-    const [emailCopied, setEmailCopied] = useState(false);
-    // CORREÇÃO: E-mail atualizado
-    const userEmail = "flaviocarvalho.brz@gmail.com";
+  const [emailCopied, setEmailCopied] = useState(false);
+  const userEmail = 'flaviocarvalho.brz@gmail.com';
 
-    const handleCopyEmail = () => {
-        navigator.clipboard.writeText(userEmail);
-        toast.success("Endereço de e-mail copiado!");
-        setEmailCopied(true);
-        setTimeout(() => setEmailCopied(false), 2000);
-    };
+  // Estados para controlar o formulário
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSending, setIsSending] = useState(false);
 
-    return (
-        <div className="contact-page-container">
-            <motion.div
-                className="contact-module"
-                variants={moduleVariants}
-                initial="hidden"
-                animate="visible"
+  // Atualiza o estado conforme o usuário digita
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Envia os dados para o back-end ao submeter o formulário
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSending(true);
+    const toastId = toast.loading('Enviando mensagem...');
+
+    try {
+      await axios.post('http://localhost:3001/send-email', formData);
+      toast.success('Mensagem enviada com sucesso!', { id: toastId });
+      setFormData({ name: '', email: '', message: '' }); // Limpa o formulário
+    } catch (error) {
+      toast.error('Ocorreu um erro ao enviar a mensagem.', { id: toastId });
+      console.error('Erro no envio:', error);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(userEmail);
+    toast.success('Endereço de e-mail copiado!');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
+
+  return (
+    <div className="contact-page-container">
+      <motion.div
+        className="contact-module"
+        variants={moduleVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* -- Decorações Gráficas -- */}
+        <div className="module-decoration corner top-left"></div>
+        <div className="module-decoration corner top-right"></div>
+        <div className="module-decoration corner bottom-left"></div>
+        <div className="module-decoration corner bottom-right"></div>
+        <div className="module-decoration scanline"></div>
+
+        {/* -- Cabeçalho -- */}
+        <motion.header className="module-header" variants={itemVariants}>
+          <h1 className="module-title">contato</h1>
+          <p className="module-subtitle">mande uma mensagem.</p>
+        </motion.header>
+
+        {/* -- Formulário (Ação Principal) -- */}
+        <motion.div className="module-main-content" variants={itemVariants}>
+          <form className="contact-form" onSubmit={handleFormSubmit}>
+            <div className="form-field">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+              <label htmlFor="name">seu Nome / organização</label>
+            </div>
+            <div className="form-field">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              <label htmlFor="email">seu e-mail</label>
+            </div>
+            <div className="form-field">
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+              <label htmlFor="message">sua mensagem</label>
+            </div>
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={isSending}
             >
-                {/* -- Decorações Gráficas -- */}
-                <div className="module-decoration corner top-left"></div>
-                <div className="module-decoration corner top-right"></div>
-                <div className="module-decoration corner bottom-left"></div>
-                <div className="module-decoration corner bottom-right"></div>
-                <div className="module-decoration scanline"></div>
+              <span>{isSending ? 'enviando...' : 'enviar'}</span>
+              <ArrowRight size={20} />
+            </button>
+          </form>
+        </motion.div>
 
-                {/* -- Cabeçalho -- */}
-                <motion.header className="module-header" variants={itemVariants}>
-                    <h1 className="module-title">contato</h1>
-                    <p className="module-subtitle">mande uma mensagem.</p>
-                </motion.header>
-
-                {/* -- Formulário (Ação Principal) -- */}
-                <motion.div className="module-main-content" variants={itemVariants}>
-                    <form className="contact-form">
-                        <div className="form-field">
-                            <input type="text" id="name" name="name" required />
-                            <label htmlFor="name">seu Nome / organização</label>
-                        </div>
-                        <div className="form-field">
-                            <input type="email" id="email" name="email" required />
-                            <label htmlFor="email">seu e-mail</label>
-                        </div>
-                        <div className="form-field">
-                            <textarea id="message" name="message" rows={5} required></textarea>
-                            <label htmlFor="message">sua mensagem</label>
-                        </div>
-                        <button type="submit" className="submit-button">
-                            <span>enviar</span>
-                            <ArrowRight size={20} />
-                        </button>
-                    </form>
-                </motion.div>
-
-                {/* -- Ações Secundárias e Links -- */}
-                <motion.footer className="module-footer" variants={itemVariants}>
-                    <p className="footer-title">// CANAIS_ALTERNATIVOS</p>
-                    <div className="alternative-channels">
-                        <button className="channel-action" onClick={handleCopyEmail}>
-                            {emailCopied ? <Check size={16} className="success-icon" /> : <Copy size={16} />}
-                            <span>Copiar E-mail</span>
-                        </button>
-                        {/* CORREÇÃO: Links atualizados */}
-                        <a href="https://github.com/Flavsc" target="_blank" rel="noopener noreferrer" className="channel-action">
-                            <Github size={16} />
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/flavio-carvalho-382b82263/" target="_blank" rel="noopener noreferrer" className="channel-action">
-                            <Linkedin size={16} />
-                            <span>LinkedIn</span>
-                        </a>
-                    </div>
-                </motion.footer>
-            </motion.div>
-        </div>
-    );
+        {/* -- Ações Secundárias e Links -- */}
+        <motion.footer className="module-footer" variants={itemVariants}>
+          <p className="footer-title">// CANAIS_ALTERNATIVOS</p>
+          <div className="alternative-channels">
+            <button className="channel-action" onClick={handleCopyEmail}>
+              {emailCopied ? (
+                <Check size={16} className="success-icon" />
+              ) : (
+                <Copy size={16} />
+              )}
+              <span>Copiar E-mail</span>
+            </button>
+            <a
+              href="https://github.com/Flavsc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="channel-action"
+            >
+              <Github size={16} />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/flavio-carvalho-382b82263/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="channel-action"
+            >
+              <Linkedin size={16} />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </motion.footer>
+      </motion.div>
+    </div>
+  );
 }
