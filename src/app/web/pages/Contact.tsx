@@ -54,9 +54,21 @@ export default function Contact() {
     const toastId = toast.loading('Enviando mensagem...');
 
     try {
-      await axios.post('http://localhost:3001/send-email', formData);
+      // Acessa a URL de forma segura e flexível
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+      if (!backendUrl) {
+        // Medida de segurança caso a variável não seja encontrada
+        throw new Error('A URL do backend não foi configurada.');
+      }
+
+      // Monta a URL completa do endpoint
+      const endpoint = `${backendUrl}/send-email`;
+
+      await axios.post(endpoint, formData);
+
       toast.success('Mensagem enviada com sucesso!', { id: toastId });
-      setFormData({ name: '', email: '', message: '' }); // Limpa o formulário
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       toast.error('Ocorreu um erro ao enviar a mensagem.', { id: toastId });
       console.error('Erro no envio:', error);
