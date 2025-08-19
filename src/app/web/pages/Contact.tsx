@@ -149,7 +149,6 @@ export default function Contact() {
           </form>
         </motion.div>
 
-        {/* -- Ações Secundárias e Links -- */}
         <motion.footer className="module-footer" variants={itemVariants}>
           <p className="footer-title">// CANAIS_ALTERNATIVOS</p>
           <div className="alternative-channels">
