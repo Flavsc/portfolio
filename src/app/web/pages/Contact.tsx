@@ -97,13 +97,12 @@ export default function Contact() {
         <div className="module-decoration corner bottom-left"></div>
         <div className="module-decoration corner bottom-right"></div>
         <div className="module-decoration scanline"></div>
-        
+
         <motion.header className="module-header" variants={itemVariants}>
           <h1 className="module-title">contato</h1>
           <p className="module-subtitle">mande uma mensagem.</p>
         </motion.header>
 
-        {/* -- Formulário (Ação Principal) -- */}
         <motion.div className="module-main-content" variants={itemVariants}>
           <form className="contact-form" onSubmit={handleFormSubmit}>
             <div className="form-field">
