@@ -92,14 +92,12 @@ export default function Contact() {
         initial="hidden"
         animate="visible"
       >
-        {/* -- Decorações Gráficas -- */}
         <div className="module-decoration corner top-left"></div>
         <div className="module-decoration corner top-right"></div>
         <div className="module-decoration corner bottom-left"></div>
         <div className="module-decoration corner bottom-right"></div>
         <div className="module-decoration scanline"></div>
-
-        {/* -- Cabeçalho -- */}
+        
         <motion.header className="module-header" variants={itemVariants}>
           <h1 className="module-title">contato</h1>
           <p className="module-subtitle">mande uma mensagem.</p>
