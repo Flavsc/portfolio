@@ -1,127 +1,80 @@
-@use "../variables";
-@use "../mixins";
+@use '../variables';
 
-.projects-page-layout {
-  display: flex;
-  gap: 3rem;
+.projects-section {
+  width: 100%;
   min-height: 100vh;
-  padding: 120px 4rem 80px 4rem;
-  
-  // CORREÇÃO PARA MOBILE: Muda para layout de coluna
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    padding: 100px 2rem 50px 2rem;
-  }
-}
-
-.projects-sidebar {
-  flex: 0 0 300px;
-  position: sticky;
-  top: 120px;
-  height: calc(100vh - 200px);
+  padding: 4rem 0; // Padding vertical, horizontal será controlado pelo carrossel
+  background-color: variables.$black;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  
-  .sidebar-header {
-    .sidebar-title {
-      font-family: variables.$font-secondary;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: variables.$white;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    
-    .sidebar-divider {
-      width: 50px;
-      height: 2px;
-      background-color: variables.$primary;
-      margin-bottom: 1rem;
-    }
-    
-    .sidebar-subtitle {
-      font-family: variables.$font-primary;
-      font-size: 0.9rem;
-      color: variables.$text-secondary;
-      line-height: 1.7;
-    }
-  }
-
-  .sidebar-nav {
-    margin-top: 3rem;
-    
-    p {
-      font-family: variables.$font-primary;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      color: variables.$text-secondary;
-      margin-bottom: 1rem;
-    }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    li {
-      font-family: variables.$font-secondary;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-      color: variables.$text-secondary;
-      cursor: pointer;
-      transition: color 0.2s ease, padding-left 0.2s ease;
-      position: relative;
-      
-      &.active {
-        color: variables.$white;
-        padding-left: 1rem;
-        
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 4px;
-          height: 100%;
-          background-color: variables.$primary;
-        }
-      }
-      
-      &:hover:not(.active) {
-        color: variables.$white;
-      }
-    }
-  }
-
-  .sidebar-footer {
-    margin-top: auto;
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: variables.$text-secondary;
-  }
-
-  // CORREÇÃO PARA MOBILE: Remove o 'sticky' e ajusta a altura
-  @media (max-width: 1024px) {
-    position: static;
-    height: auto;
-    margin-bottom: 3rem;
-  }
+  justify-content: center;
 }
 
-.projects-grid-container {
-  flex: 1;
+.projects-container {
+  max-width: 1600px; // Aumenta a largura máxima para o carrossel
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
 
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 320px);
-    gap: 2rem;
+.projects-title {
+  font-family: variables.$font-secondary;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: variables.$white;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+// Estilização do Swiper
+.projects-carousel {
+  width: 100%;
+  padding: 2rem 0; // Espaço para a barra de progresso e navegação
+
+  .swiper-slide {
+    display: flex;
     justify-content: center;
-    
-    // CORREÇÃO PARA MOBILE: A grelha passa a ter uma única coluna
-    @media (max-width: variables.$mobile) {
-      grid-template-columns: 1fr;
+    align-items: center;
+    height: auto; // Permite que a altura se ajuste ao card
+  }
+
+  // Estilização dos botões de navegação
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: variables.$primary;
+    width: 50px;
+    height: 50px;
+    background-color: variables.$black;
+    border: 2px solid variables.$primary;
+    border-radius: 0; // Bordas retas
+    transition: background-color 0.2s ease;
+
+    &::after {
+      font-size: 1.5rem;
+      font-weight: 900;
     }
+
+    &:hover {
+      background-color: variables.$primary;
+      color: variables.$black;
+    }
+  }
+
+  // Estilização da barra de progresso/scrollbar
+  .swiper-scrollbar {
+    background: rgba(variables.$primary, 0.2);
+    height: 4px;
+    bottom: 0;
+  }
+
+  .swiper-scrollbar-drag {
+    background: variables.$primary;
+    height: 6px;
+    top: -1px;
+    border-radius: 0;
   }
 }

@@ -1,0 +1,12 @@
+@use "../variables";
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px; // Altura da barra
+  background: variables.$primary; // Cor da barra
+  transform-origin: 0%; // Garante que a barra cresce da esquerda para a direita
+  z-index: 9999; // Garante que fica no topo de tudo
+}

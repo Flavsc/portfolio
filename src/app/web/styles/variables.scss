@@ -1,23 +1,15 @@
 // Colors
-$primary: #ffffff;
-$secondary: #0c0011;
-$black: #05010a;
-$white: #f2eef5;
+$primary: #e2d6fa; // Azul elétrico/ciano
+$secondary: #1a1a2e;
+$black: #0f0f1e; // Preto levemente azulado
+$white: #e0e0e0; // Branco levemente acinzentado
 $gray: #1f1e22;
-$primary-light: #f1f1f1;
-$text-primary: #c9d1d9;
-$text-secondary: #8b949e;
-
-// Gradients
-$gradient-primary: linear-gradient(135deg, $primary, $secondary);
-$gradient-dark: linear-gradient(135deg, $black, $gray);
-$gradient-glass: linear-gradient(135deg, rgba($white, 0.1), rgba($white, 0.05));
+$text-primary: #e0e0e0; // Variável que estava em falta, adicionada de volta
+$text-secondary: #e0e0e0; // Variável que corrigimos anteriormente
 
 // Typography
-// $font-primary: "Space Mono", monospace;
-// $font-secondary: "Space Grotesk", sans-serif;
-$font-primary: 'Noto Sans', sans-serif;
-$font-secondary: 'Workbench', sans-serif;
+$font-primary: 'Courier New', Courier, monospace;
+$font-secondary: 'Unbounded', sans-serif;
 
 // Breakpoints
 $mobile: 576px;
@@ -32,13 +24,13 @@ $spacing-lg: 2rem;
 $spacing-xl: 3rem;
 
 // Effects
-$transition-fast: 0.3s ease-in-out;
-$transition-medium: 0.4s ease-in-out;
-$border-radius: 16px;
-$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-$shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.1);
-$blur-effect: blur(12px);
+$transition-fast: 0.1s ease-in-out;
+$transition-medium: 0.2s ease-in-out;
+$border-radius: 0;
+$shadow-sm: 0 4px 0 rgba(0, 0, 0, 1);
+$shadow-md: 0 8px 0 rgba(0, 0, 0, 1);
+$shadow-lg: 0 12px 0 rgba(0, 0, 0, 1);
+$blur-effect: none;
 
 $container-width: 1200px;
 $container-padding: 1.5rem;

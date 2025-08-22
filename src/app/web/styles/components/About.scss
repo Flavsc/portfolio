@@ -1,141 +1,91 @@
-@use "../variables";
-@use "../mixins";
+@use '../variables';
 
-.about-page-container {
-  @include mixins.container;
+.about-section {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 120px;
-  padding-bottom: 50px;
+  padding: 4rem 2rem;
+  overflow: hidden;
+  position: relative;
+  background-color: variables.$black;
 }
 
-.about-content-wrapper {
+.about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 3rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
   width: 100%;
 
-  // CORREÇÃO PARA MOBILE: Muda para layout de uma coluna
-  @media (max-width: variables.$tablet) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  @media (min-width: variables.$tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    align-items: center;
   }
 }
 
-// Painel visual à esquerda
-.about-visual-panel {
-  position: relative;
-  border: 1px solid rgba(variables.$primary, 0.3);
-  background: rgba(variables.$primary, 0.05);
-  padding: 1.5rem;
+.about-title-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  min-height: 400px;
+}
 
-  .visual-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(variables.$primary, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(variables.$primary, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+.about-title {
+  font-family: variables.$font-secondary;
+  font-weight: 900;
+  font-size: clamp(4rem, 15vw, 10rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: variables.$white;
+  margin: 0;
+  text-align: center;
+
+  @media (min-width: variables.$tablet) {
+    text-align: left;
   }
+}
 
-  .visual-scanner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
+.about-content {
+  border: 2px solid variables.$primary;
+  padding: 2rem;
+  background-color: rgba(variables.$black, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-text {
+  font-family: variables.$font-primary;
+  color: variables.$white;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 60ch; // Limita o comprimento para melhor legibilidade
+}
+
+.about-cta-button {
+  display: inline-block;
+  padding: variables.$spacing-sm variables.$spacing-lg;
+  border: 1px solid variables.$primary;
+  background: transparent;
+  color: variables.$primary;
+  font-family: variables.$font-primary;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  align-self: flex-start;
+
+  &:hover {
     background: variables.$primary;
-    box-shadow: 0 0 15px variables.$primary;
-    animation: scan 4s linear infinite;
+    color: variables.$black;
+    transform: scale(1.05);
   }
-
-  .visual-rings {
-    position: relative;
-    width: 150px;
-    height: 150px;
-
-    .ring {
-      position: absolute;
-      inset: 0;
-      border: 2px solid variables.$primary;
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: rotate-ring 6s linear infinite;
-
-      &:nth-child(2) {
-        transform: rotateX(70deg);
-        animation-delay: -2s;
-      }
-      &:nth-child(3) {
-        transform: rotateY(70deg);
-        animation-delay: -4s;
-      }
-    }
-  }
-  
-  .visual-label {
-    position: absolute;
-    bottom: 1rem;
-    font-family: variables.$font-primary;
-    font-size: 0.8rem;
-    color: variables.$text-secondary;
-    letter-spacing: 2px;
-  }
-}
-
-// Painel de texto à direita
-.about-text-panel {
-  .about-title {
-    font-family: variables.$font-secondary;
-    font-size: 3rem;
-    font-weight: 700;
-    color: variables.$white;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(variables.$primary, 0.7);
-
-    .title-bracket {
-      color: variables.$primary;
-    }
-    // CORREÇÃO PARA MOBILE: Reduz o tamanho do título
-    @media (max-width: variables.$mobile) {
-      font-size: 2.2rem;
-    }
-  }
-
-  .about-subtitle {
-    font-family: variables.$font-primary;
-    font-size: 1rem;
-    color: variables.$text-secondary;
-    margin-bottom: 2rem;
-  }
-
-  .about-text-body {
-    font-family: variables.$font-primary;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: variables.$text-primary;
-    
-    p {
-      margin-bottom: 1.5rem;
-      max-width: 60ch;
-    }
-  }
-}
-
-// Animações
-@keyframes scan {
-  from { top: -10px; }
-  to { top: 100%; }
-}
-
-@keyframes rotate-ring {
-  from { transform: rotate(0deg) rotateX(0deg); }
-  to { transform: rotate(360deg) rotateX(360deg); }
 }
