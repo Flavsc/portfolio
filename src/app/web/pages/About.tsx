@@ -1,10 +1,22 @@
-import { motion, Variants } from 'framer-motion'; // Importe o tipo Variants
+import { motion, Variants } from 'framer-motion';
 import NoiseOverlay from '@components/NoiseOverlay';
+import Skills from '../components/Skills'; // CORRIGIDO
 import '@styles/components/About.scss';
+
+const pageVariants: Variants = {
+  initial: { opacity: 0, x: '-100vw' },
+  in: { opacity: 1, x: 0 },
+  out: { opacity: 0, x: '100vw' },
+};
+
+const pageTransition = {
+  type: 'tween' as const, // CORRIGIDO
+  ease: 'anticipate' as const, // CORRIGIDO
+  duration: 0.8,
+};
 
 export default function About() {
   const containerVariants: Variants = {
-    // Adicione a tipagem aqui
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -16,7 +28,6 @@ export default function About() {
   };
 
   const itemVariants: Variants = {
-    // E adicione a tipagem aqui
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -26,7 +37,13 @@ export default function About() {
   };
 
   return (
-    <>
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <NoiseOverlay />
       <motion.section
         className="about-section"
@@ -39,29 +56,31 @@ export default function About() {
             <h1 className="about-title">
               SOBRE
               <br />
-              NÓS
+              MIM
             </h1>
           </motion.div>
 
           <motion.div className="about-content" variants={itemVariants}>
             <p className="about-text">
-              A 166STŪDIOS é um estúdio de desenvolvimento criativo focado em
-              criar experiências digitais únicas e memoráveis. A nossa paixão é
-              unir design de vanguarda com tecnologia de ponta para construir
+              Olá! Sou Flávio, um desenvolvedor criativo apaixonado por
+              construir experiências digitais únicas e memoráveis. Minha missão
+              é unir design de vanguarda com tecnologia de ponta para criar
               soluções que não só funcionam bem, mas que também contam uma
-              história.
+              história e provocam uma emoção.
             </p>
             <p className="about-text">
-              Trabalhamos na interseção entre a arte e o código, explorando
-              novas possibilidades e desafiando os limites do que é possível na
-              web. Cada projeto é uma oportunidade para inovar.
+              Atuo na interseção entre a arte e o código, explorando novas
+              possibilidades e desafiando os limites do que é possível na web.
+              Cada projeto é uma tela em branco e uma oportunidade para inovar.
             </p>
-            <a href="contact" className="about-cta-button">
+            <a href="/portfolio/contact" className="about-cta-button">
               Vamos Conversar
             </a>
           </motion.div>
         </div>
       </motion.section>
-    </>
+
+      <Skills />
+    </motion.div>
   );
 }

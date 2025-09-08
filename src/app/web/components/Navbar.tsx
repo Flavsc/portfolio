@@ -23,14 +23,12 @@ const socialLinks = [
 export default function Navbar() {
   const [isRadialMenuOpen, setIsRadialMenuOpen] = useState(false);
 
-  // Efeito para travar o scroll da página quando o menu radial estiver aberto
   useEffect(() => {
     if (isRadialMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    // Cleanup function para garantir que o scroll volte ao normal
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -40,7 +38,6 @@ export default function Navbar() {
     setIsRadialMenuOpen(!isRadialMenuOpen);
   };
 
-  // Função para fechar o menu ao clicar em um link
   const handleNavLinkClick = () => {
     setIsRadialMenuOpen(false);
   };
@@ -76,7 +73,12 @@ export default function Navbar() {
           <ul className="nav-list-desktop">
             {navLinks.map((link) => (
               <li key={link.to}>
-                <NavLink to={link.to} className="nav-item">
+                <NavLink
+                  to={link.to}
+                  className="nav-item"
+                  // CORREÇÃO APLICADA AQUI:
+                  end={link.to === '/portfolio/'}
+                >
                   {link.text}
                 </NavLink>
               </li>
@@ -113,7 +115,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* -- NOVO: Menu Radial para Mobile -- */}
+      {/* -- Menu Radial para Mobile -- */}
       <div className="radial-menu-mobile">
         <button
           className="radial-menu-toggle"
@@ -132,7 +134,8 @@ export default function Navbar() {
                 to={link.to}
                 className="radial-nav-item"
                 onClick={handleNavLinkClick}
-                // Variável CSS para animação escalonada
+                // CORREÇÃO APLICADA AQUI TAMBÉM:
+                end={link.to === '/portfolio/'}
                 style={{ '--i': index } as React.CSSProperties}
               >
                 <span>{link.text}</span>

@@ -3,25 +3,34 @@ import { motion, Variants } from 'framer-motion';
 import NoiseOverlay from '@components/NoiseOverlay';
 import '@styles/components/Contact.scss';
 
+const pageVariants: Variants = {
+  initial: { opacity: 0, x: '-100vw' },
+  in: { opacity: 1, x: 0 },
+  out: { opacity: 0, x: '100vw' },
+};
+
+const pageTransition = {
+  type: 'tween' as const, // CORRIGIDO
+  ease: 'anticipate' as const, // CORRIGIDO
+  duration: 0.8,
+};
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você adicionaria a lógica para enviar o formulário
     alert(`Mensagem enviada por: ${formData.name}`);
-    setFormData({ name: '', email: '', message: '' }); // Limpa o formulário
+    setFormData({ name: '', email: '', message: '' });
   };
 
   const containerVariants: Variants = {
@@ -45,7 +54,13 @@ export default function Contact() {
   };
 
   return (
-    <>
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <NoiseOverlay />
       <motion.section
         className="contact-section"
@@ -65,7 +80,7 @@ export default function Contact() {
               isso. Preencha o formulário ou envie-nos um e-mail.
             </p>
             <a href="mailto:flavsc.brz@gmail.com" className="contact-email">
-                flavsc.brz@gmail.com
+              flavsc.brz@gmail.com
             </a>
           </motion.div>
 
@@ -113,7 +128,6 @@ export default function Contact() {
           </motion.form>
         </div>
       </motion.section>
-
-    </>
+    </motion.div>
   );
 }
