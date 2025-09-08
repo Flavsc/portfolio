@@ -2,7 +2,6 @@ import { motion, Variants } from 'framer-motion';
 import ProjectCard from '@components/ProjectCard';
 import NoiseOverlay from '@components/NoiseOverlay';
 
-
 // Imports do Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar, A11y } from 'swiper/modules';
@@ -15,43 +14,33 @@ import '@styles/components/Projects.scss';
 const projectData = [
   {
     id: 1,
-    title: 'Projeto Cygnus',
+    title: 'Mazca - Streetwear E-commerce',
     description:
-      'Uma plataforma interativa de visualização de dados astronómicos, construída com React e Three.js para uma experiência imersiva.',
+      'E-commerce de moda urbana focado em roupas streetwear, com design moderno e experiência de usuário fluida.',
     imageUrl:
-      'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop',
-    tags: ['React', 'Three.js', 'API', 'UX/UI'],
-    link: '#',
+      'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=2069&auto=format&fit=crop',
+    tags: ['E-commerce', 'Streetwear', 'Next.js', 'TypeScript'],
+    link: 'https://www.mazca.com.br',
   },
   {
     id: 2,
-    title: 'Neon Nexus',
+    title: 'Music Visualizer Interativo',
     description:
-      'E-commerce de moda urbana com um design arrojado e animações fluidas, focado na performance e na experiência do utilizador.',
+      'Uma experiência web imersiva que transforma música em arte visual. Construído com React, Three.js e a Web Audio API para criar visuais 3D dinâmicos.',
     imageUrl:
-      'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1974&auto=format&fit=crop',
-    tags: ['Next.js', 'TypeScript', 'Stripe', 'Framer Motion'],
-    link: '#',
+      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop',
+    tags: ['React', 'Three.js', 'Web Audio API', 'Framer Motion'],
+    link: '#', // Lembre-se de colocar o link quando o projeto estiver pronto
   },
   {
     id: 3,
-    title: 'Áudio Arkive',
+    title: 'Mazca - Streetwear E-commerce',
     description:
-      'Aplicação web para músicos e produtores, permitindo o upload, partilha e colaboração em projetos musicais na nuvem.',
+      'E-commerce de moda urbana focado em roupas streetwear, com design moderno e experiência de usuário fluida.',
     imageUrl:
-      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Vue.js', 'Node.js', 'Firebase', 'Web Audio API'],
-    link: '#',
-  },
-  {
-    id: 4,
-    title: 'Brutal Forms',
-    description:
-      'Gerador de formulários com uma estética brutalista, focado na simplicidade, acessibilidade e performance.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop',
-    tags: ['SvelteKit', 'CSS', 'HTML'],
-    link: '#',
+      'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=2069&auto=format&fit=crop',
+    tags: ['E-commerce', 'Streetwear', 'Next.js', 'TypeScript'],
+    link: 'https://www.mazca.com.br',
   },
 ];
 
@@ -114,7 +103,6 @@ export default function Projects() {
           </Swiper>
         </motion.div>
       </section>
-
     </>
   );
 }

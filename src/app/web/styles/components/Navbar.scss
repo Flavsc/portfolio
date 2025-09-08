@@ -1,8 +1,8 @@
-@use "../variables";
+@use '../variables';
 
 // Container principal da HUD
 .hud-frame {
-  z-index: 9999;
+  z-index: 99999;
   pointer-events: none;
   * {
     pointer-events: auto;
@@ -18,13 +18,31 @@
   animation: hud-boot-sequence 1.5s ease-out;
   transition: all 0.3s ease;
 
-  &.top-line, &.bottom-line { height: 1px; left: 5%; width: 90%; }
-  &.left-line, &.right-line { width: 1px; top: 5%; height: 90%; }
-  
-  &.top-line { top: 2rem; }
-  &.bottom-line { bottom: 2rem; }
-  &.left-line { left: 2rem; }
-  &.right-line { right: 2rem; }
+  &.top-line,
+  &.bottom-line {
+    height: 1px;
+    left: 5%;
+    width: 90%;
+  }
+  &.left-line,
+  &.right-line {
+    width: 1px;
+    top: 5%;
+    height: 90%;
+  }
+
+  &.top-line {
+    top: 2rem;
+  }
+  &.bottom-line {
+    bottom: 2rem;
+  }
+  &.left-line {
+    left: 2rem;
+  }
+  &.right-line {
+    right: 2rem;
+  }
 
   &.corner {
     width: 25px;
@@ -32,24 +50,60 @@
     background-color: transparent;
     border-style: solid;
     border-color: variables.$primary;
-    
-    &.top-left { top: 2rem; left: 2rem; border-width: 2px 0 0 2px; }
-    &.top-right { top: 2rem; right: 2rem; border-width: 2px 2px 0 0; }
-    &.bottom-left { bottom: 2rem; left: 2rem; border-width: 0 0 2px 2px; }
-    &.bottom-right { bottom: 2rem; right: 2rem; border-width: 0 2px 2px 0; }
+
+    &.top-left {
+      top: 2rem;
+      left: 2rem;
+      border-width: 2px 0 0 2px;
+    }
+    &.top-right {
+      top: 2rem;
+      right: 2rem;
+      border-width: 2px 2px 0 0;
+    }
+    &.bottom-left {
+      bottom: 2rem;
+      left: 2rem;
+      border-width: 0 0 2px 2px;
+    }
+    &.bottom-right {
+      bottom: 2rem;
+      right: 2rem;
+      border-width: 0 2px 2px 0;
+    }
   }
 
   // CORREÇÃO PARA MOBILE: Ajusta a posição das decorações em ecrãs menores
   @media (max-width: variables.$tablet) {
-    &.top-line { top: 1rem; }
-    &.bottom-line { bottom: 1rem; }
-    &.left-line { left: 1rem; }
-    &.right-line { right: 1rem; }
+    &.top-line {
+      top: 1rem;
+    }
+    &.bottom-line {
+      bottom: 1rem;
+    }
+    &.left-line {
+      left: 1rem;
+    }
+    &.right-line {
+      right: 1rem;
+    }
     &.corner {
-      &.top-left { top: 1rem; left: 1rem; }
-      &.top-right { top: 1rem; right: 1rem; }
-      &.bottom-left { bottom: 1rem; left: 1rem; }
-      &.bottom-right { bottom: 1rem; right: 1rem; }
+      &.top-left {
+        top: 1rem;
+        left: 1rem;
+      }
+      &.top-right {
+        top: 1rem;
+        right: 1rem;
+      }
+      &.bottom-left {
+        bottom: 1rem;
+        left: 1rem;
+      }
+      &.bottom-right {
+        bottom: 1rem;
+        right: 1rem;
+      }
     }
   }
 }
@@ -65,76 +119,317 @@
   &::before {
     content: '';
     position: absolute;
-    background: linear-gradient(to right, rgba(variables.$primary, 0), rgba(variables.$primary, 0.5));
+    background: linear-gradient(
+      to right,
+      rgba(variables.$primary, 0),
+      rgba(variables.$primary, 0.5)
+    );
   }
 }
 
 // Posicionamento e estilo de cada módulo
 .top-left {
-  top: 2.5rem; left: 3rem;
-  &::before { top: 50%; right: -50px; width: 50px; height: 1px; transform: translateY(-50%); }
-  .logo { font-size: 1.2rem; font-weight: 700; color: variables.$white; text-decoration: none; letter-spacing: 1px; }
-  .status { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; margin-top: 0.5rem; }
-  .status-light { width: 8px; height: 8px; border-radius: 50%; background-color: #27c93f; box-shadow: 0 0 5px #27c93f; animation: pulse-green 2s infinite; }
-  
-  @media (max-width: variables.$tablet) { top: 1.5rem; left: 1.5rem; }
+  top: 2.5rem;
+  left: 3rem;
+  &::before {
+    top: 50%;
+    right: -50px;
+    width: 50px;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: variables.$white;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .status-light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #27c93f;
+    box-shadow: 0 0 5px #27c93f;
+    animation: pulse-green 2s infinite;
+  }
+
+  @media (max-width: variables.$tablet) {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
 }
 
 .top-right {
-  top: 2.5rem; right: 3rem;
-  &::before { top: 50%; left: -50px; width: 50px; height: 1px; transform: translateY(-50%) scaleX(-1); }
-
-  .nav-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 2rem; }
-  .nav-item { color: variables.$text-secondary; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.2s ease;
-    &::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px; background-color: variables.$primary; transition: all 0.3s ease; }
-    &:hover, &.active { color: variables.$white; &::after { left: 0; width: 100%; } }
+  top: 2.5rem;
+  right: 3rem;
+  &::before {
+    top: 50%;
+    left: -50px;
+    width: 50px;
+    height: 1px;
+    transform: translateY(-50%) scaleX(-1);
   }
-  
+
+  .nav-list-desktop {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-item {
+    color: variables.$text-secondary;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.2s ease;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background-color: variables.$primary;
+      transition: all 0.3s ease;
+    }
+    &:hover,
+    &.active {
+      color: variables.$white;
+      &::after {
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+
   @media (max-width: variables.$tablet) {
-    top: 1.5rem; right: 1.5rem;
-    .nav-list { gap: 1.5rem; }
-    .nav-item { font-size: 0.9rem; }
+    top: 1.5rem;
+    right: 1.5rem;
+    .nav-list-desktop {
+      gap: 1.5rem;
+    }
+    .nav-item {
+      font-size: 0.9rem;
+    }
   }
 
-  // CORREÇÃO PARA MOBILE: Esconde a navegação em telemóveis
   @media (max-width: variables.$mobile) {
-    .nav-list { display: none; }
+    .nav-list-desktop {
+      display: none;
+    }
   }
 }
 
 .bottom-left {
-  bottom: 2.5rem; left: 3rem;
-  &::before { bottom: 50%; right: -50px; width: 50px; height: 1px; transform: translateY(50%); }
-  .system-info p { margin: 0.2rem 0; font-size: 0.8rem; }
-  
-  @media (max-width: variables.$tablet) { bottom: 1.5rem; left: 1.5rem; }
-  // CORREÇÃO PARA MOBILE: Esconde este módulo
-  @media (max-width: variables.$mobile) { display: none; }
+  bottom: 2.5rem;
+  left: 3rem;
+  &::before {
+    bottom: 50%;
+    right: -50px;
+    width: 50px;
+    height: 1px;
+    transform: translateY(50%);
+  }
+  .system-info p {
+    margin: 0.2rem 0;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: variables.$tablet) {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+  @media (max-width: variables.$mobile) {
+    display: none;
+  }
 }
 
 .bottom-right {
-  bottom: 2.5rem; right: 3rem;
-  &::before { bottom: 50%; left: -50px; width: 50px; height: 1px; transform: translateY(50%) scaleX(-1); }
-  .social-list { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; gap: 1rem;
-    a { color: variables.$text-secondary; transition: color 0.2s ease; &:hover { color: variables.$white; } }
+  bottom: 2.5rem;
+  right: 3rem;
+  &::before {
+    bottom: 50%;
+    left: -50px;
+    width: 50px;
+    height: 1px;
+    transform: translateY(50%) scaleX(-1);
   }
-  
-  @media (max-width: variables.$tablet) { bottom: 1.5rem; right: 1.5rem; }
-  // CORREÇÃO PARA MOBILE: Esconde este módulo também
-  @media (max-width: variables.$mobile) { display: none; }
-}
+  .social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    a {
+      color: variables.$text-secondary;
+      transition: color 0.2s ease;
+      &:hover {
+        color: variables.$white;
+      }
+    }
+  }
 
+  @media (max-width: variables.$tablet) {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  @media (max-width: variables.$mobile) {
+    display: none;
+  }
+}
 
 // Animações
 @keyframes hud-boot-sequence {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1); opacity: 0.4; }
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0.4;
+  }
 }
 @keyframes hud-content-fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes pulse-green {
-  0%, 100% { opacity: 1; box-shadow: 0 0 5px #27c93f; }
-  50% { opacity: 0.6; box-shadow: 0 0 10px #27c93f; }
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 5px #27c93f;
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px #27c93f;
+  }
+}
+
+// --- NOVO: Estilos do Menu Radial ---
+.radial-menu-mobile {
+  display: none; // Só aparece em telas mobile
+
+  @media (max-width: variables.$mobile) {
+    display: block;
+  }
+}
+
+.radial-menu-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(variables.$primary, 0.2);
+  border: 1px solid rgba(variables.$primary, 0.7);
+  border-radius: 50%;
+  color: variables.$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(variables.$primary, 0.4);
+    box-shadow: 0 0 15px rgba(variables.$primary, 0.5);
+  }
+}
+
+.radial-menu-container {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 25, 47, 0.5);
+  backdrop-filter: blur(5px) grayscale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 10000;
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.radial-nav {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+
+  .radial-nav-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    color: variables.$white;
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    transition-delay: calc(var(--i) * 0.05s);
+
+    span {
+      display: inline-block;
+      transform: rotate(calc(var(--angle) * -1));
+      transition: letter-spacing 0.2s ease;
+    }
+
+    &:hover,
+    &.active {
+      span {
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px variables.$primary;
+      }
+    }
+  }
+
+  .radial-menu-container.is-open & {
+    .radial-nav-item {
+      opacity: 1;
+
+      $item-count: 4;
+      $spread-angle: 140deg;
+      $start-angle: -160deg;
+      $radius: 110px;
+
+      @for $i from 0 through ($item-count - 1) {
+        &:nth-child(#{$i + 1}) {
+          $angle: $start-angle + ($spread-angle / ($item-count - 1)) * $i;
+          --angle: #{$angle};
+          transform: rotate($angle) translateY(-$radius) scale(1);
+        }
+      }
+    }
+  }
 }

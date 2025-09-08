@@ -1,17 +1,10 @@
 import { motion, Variants } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
 import HeroCanvas from '@components/3D/HeroCanvas';
 import HudPanel from '@components/HudPanel';
 import NoiseOverlay from '@components/NoiseOverlay';
 import '@styles/components/Hero.scss';
 
 export default function Hero() {
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
-  };
 
   const containerVariants: Variants = {
     hidden: {},
@@ -59,17 +52,6 @@ export default function Hero() {
       <div className="hud-panel-wrapper">
         <HudPanel />
       </div>
-
-      <motion.button
-        onClick={scrollToContent}
-        className="scroll-indicator"
-        aria-label="Rolar para o conteúdo"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
-        <ArrowDown size={24} />
-      </motion.button>
     </section>
   );
 }

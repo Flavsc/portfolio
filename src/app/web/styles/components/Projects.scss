@@ -3,7 +3,7 @@
 .projects-section {
   width: 100%;
   min-height: 100vh;
-  padding: 4rem 0; // Padding vertical, horizontal será controlado pelo carrossel
+  padding: 4rem 0;
   background-color: variables.$black;
   position: relative;
   overflow: hidden;
@@ -13,7 +13,7 @@
 }
 
 .projects-container {
-  max-width: 1600px; // Aumenta a largura máxima para o carrossel
+  max-width: 1600px;
   width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
@@ -33,13 +33,13 @@
 // Estilização do Swiper
 .projects-carousel {
   width: 100%;
-  padding: 2rem 0; // Espaço para a barra de progresso e navegação
+  padding: 2rem 0;
 
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto; // Permite que a altura se ajuste ao card
+    height: auto;
   }
 
   // Estilização dos botões de navegação
