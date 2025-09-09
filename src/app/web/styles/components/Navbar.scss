@@ -195,7 +195,6 @@
     position: relative;
     padding-bottom: 5px;
     transition: color 0.2s ease;
-    text-transform: uppercase;
     &::after {
       content: '';
       position: absolute;
@@ -209,6 +208,10 @@
     &:hover,
     &.active {
       color: var(--text-color);
+      text-shadow:
+        0 0 3px var(--hud-color),
+        0 0 1px red,
+        0 0 1px blue;
       &::after {
         left: 0;
         width: 100%;
@@ -233,7 +236,6 @@
     margin: 0.2rem 0;
     font-size: 0.8rem;
     color: var(--text-secondary-color);
-    text-transform: uppercase;
   }
   @media (max-width: variables.$tablet) {
     bottom: 1.5rem;
@@ -271,21 +273,19 @@
   }
 }
 
-// Menu Radial
-.radial-menu-mobile {
+// --- NOVO MENU MOBILE (LISTA) ---
+.mobile-menu-wrapper {
   &.theme-dark {
-    --radial-bg: #{rgba(variables.$primary, 0.2)};
-    --radial-border: #{rgba(variables.$primary, 0.7)};
-    --radial-text: #{variables.$white};
-    --radial-hover-bg: #{rgba(variables.$primary, 0.4)};
-    --radial-hover-shadow: #{rgba(variables.$primary, 0.5)};
+    --mobile-bg: #{rgba(variables.$black, 0.7)};
+    --mobile-border: #{rgba(variables.$primary, 0.5)};
+    --mobile-text: #{variables.$white};
+    --mobile-hover-text: #{variables.$primary};
   }
   &.theme-light {
-    --radial-bg: #{rgba(variables.$black, 0.1)};
-    --radial-border: #{rgba(variables.$black, 0.5)};
-    --radial-text: #{variables.$black};
-    --radial-hover-bg: #{rgba(variables.$black, 0.2)};
-    --radial-hover-shadow: #{rgba(variables.$black, 0.3)};
+    --mobile-bg: #{rgba(variables.$white, 0.7)};
+    --mobile-border: #{rgba(variables.$black, 0.3)};
+    --mobile-text: #{variables.$black};
+    --mobile-hover-text: #{variables.$black};
   }
 
   display: none;
@@ -294,101 +294,68 @@
   }
 }
 
-.radial-menu-toggle {
+.mobile-menu-toggle {
   position: fixed;
   bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 1.5rem;
   width: 50px;
   height: 50px;
-  background-color: var(--radial-bg);
-  border: 1px solid var(--radial-border);
+  background-color: var(--mobile-bg);
+  border: 1px solid var(--mobile-border);
   border-radius: 50%;
-  color: var(--radial-text);
+  color: var(--mobile-text);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10001;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  &:hover {
-    background-color: var(--radial-hover-bg);
-    box-shadow: 0 0 15px var(--radial-hover-shadow);
-  }
 }
 
-.radial-menu-container {
+.mobile-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 25, 47, 0.5);
-  backdrop-filter: blur(5px) grayscale(0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+  background-color: var(--mobile-bg);
+  backdrop-filter: blur(15px);
   z-index: 10000;
-  &.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.radial-nav {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
 
-  .radial-nav-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-family: 'Fira Code', monospace;
-    color: variables.$white;
-    opacity: 0;
-    transform: scale(0.5);
-    transition:
-      transform 0.4s ease,
-      opacity 0.4s ease;
-    transition-delay: calc(var(--i) * 0.05s);
-    span {
-      display: inline-block;
-      transform: rotate(calc(var(--angle) * -1));
-      transition: letter-spacing 0.2s ease;
-    }
-    &:hover,
-    &.active {
-      span {
-        letter-spacing: 1px;
-        text-shadow: 0 0 10px variables.$primary;
-      }
-    }
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-nav-item {
+  display: block;
+  margin: 1.5rem 0;
+  padding: 0.5rem;
+  font-family: variables.$font-secondary;
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+  text-transform: uppercase;
+  color: var(--mobile-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--mobile-hover-text);
   }
 
-  .radial-menu-container.is-open & {
-    .radial-nav-item {
-      opacity: 1;
-      $item-count: 4;
-      $spread-angle: 140deg;
-      $start-angle: -160deg;
-      $radius: 110px;
-
-      @for $i from 0 through ($item-count - 1) {
-        &:nth-child(#{$i + 1}) {
-          $angle: $start-angle +
-            (math.div($spread-angle, $item-count - 1)) *
-            $i;
-          --angle: #{$angle};
-          transform: rotate($angle) translateY(-$radius) scale(1);
-        }
-      }
+  &.active {
+    color: var(--mobile-hover-text);
+    // Adiciona um indicador visual para a página ativa
+    &::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--mobile-hover-text);
+      margin: 0.5rem auto 0;
     }
   }
 }

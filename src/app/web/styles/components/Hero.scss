@@ -32,6 +32,7 @@
 .hero-title {
   font-family: variables.$font-secondary;
   font-weight: 900;
+  // Mantemos o clamp para telas maiores, mas ele será sobrescrito em telas pequenas
   font-size: clamp(4rem, 10vw, 7rem);
   line-height: 1.1;
   text-transform: lowercase;
@@ -83,5 +84,13 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+// NOVA REGRA ESPECÍFICA PARA CELULARES
+@media (max-width: variables.$mobile) {
+  .hero-title {
+    font-size: 12vw;
+    letter-spacing: -2px;
   }
 }

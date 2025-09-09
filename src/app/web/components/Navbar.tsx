@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Github, Linkedin, Mail, Grid, X } from 'lucide-react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import '@styles/components/Navbar.scss';
 import { ThemeContext } from '@context/ThemeContext';
 
@@ -21,19 +22,38 @@ const socialLinks = [
   { href: 'mailto:flaviocarvalho.brz@gmail.com', icon: Mail, label: 'Email' },
 ];
 
+// Variantes de animação para o overlay e a lista
+const overlayVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
+  exit: { opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+};
+
+const navListVariants: Variants = {
+  hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+};
+
+const navItemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { ease: 'easeOut', duration: 0.4 } },
+  exit: { y: 20, opacity: 0, transition: { ease: 'easeIn', duration: 0.2 } },
+};
+
 export default function Navbar() {
-  const [isRadialMenuOpen, setIsRadialMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    document.body.style.overflow = isRadialMenuOpen ? 'hidden' : 'unset';
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isRadialMenuOpen]);
+  }, [isMobileMenuOpen]);
 
-  const toggleRadialMenu = () => setIsRadialMenuOpen(!isRadialMenuOpen);
-  const handleNavLinkClick = () => setIsRadialMenuOpen(false);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const handleNavLinkClick = () => setIsMobileMenuOpen(false);
 
   const hudClassName = `hud-frame theme-${theme}`;
 
@@ -109,33 +129,41 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* -- Menu Radial para Mobile (Adapta-se ao tema) -- */}
-      <div className={`radial-menu-mobile theme-${theme}`}>
+      {/* -- NOVO MENU MOBILE (LISTA) -- */}
+      <div className={`mobile-menu-wrapper theme-${theme}`}>
         <button
-          className="radial-menu-toggle"
-          onClick={toggleRadialMenu}
+          className="mobile-menu-toggle"
+          onClick={toggleMobileMenu}
           aria-label="Toggle navigation"
         >
-          {isRadialMenuOpen ? <X size={24} /> : <Grid size={24} />}
+          {isMobileMenuOpen ? <X size={24} /> : <Grid size={24} />}
         </button>
-        <div
-          className={`radial-menu-container ${isRadialMenuOpen ? 'is-open' : ''}`}
-        >
-          <nav className="radial-nav">
-            {navLinks.map((link, index) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className="radial-nav-item"
-                onClick={handleNavLinkClick}
-                end={link.to === '/portfolio/'}
-                style={{ '--i': index } as React.CSSProperties}
-              >
-                <span>{link.text}</span>
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="mobile-menu-overlay"
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <motion.ul className="mobile-nav-list" variants={navListVariants}>
+                {navLinks.map((link) => (
+                  <motion.li key={link.to} variants={navItemVariants}>
+                    <NavLink
+                      to={link.to}
+                      className="mobile-nav-item"
+                      onClick={handleNavLinkClick}
+                      end={link.to === '/portfolio/'}
+                    >
+                      {link.text}
+                    </NavLink>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
