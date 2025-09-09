@@ -1,0 +1,2 @@
+import{u as a,j as e}from"./index-CO9-xoa2.js";function t(){const n=a();return e.jsx("div",{className:"not-found",children:e.jsxs("div",{className:"not-found__content",children:[e.jsx("h1",{className:"gradient-text",children:"404"}),e.jsx("h2",{children:"pagina não encontrada"}),e.jsx("p",{children:"parece que essa pagina não existe..."}),e.jsx("button",{className:"primary-button",onClick:()=>n("/"),children:"volte para o home"})]})})}export{t as default};
+//# sourceMappingURL=NotFound-CPczU8Up.js.map
