@@ -1,6 +1,5 @@
 @use '../variables';
 
-// Força a ocultação do cursor padrão em todos os elementos
 body,
 a,
 button,
@@ -10,55 +9,61 @@ textarea {
   cursor: none !important;
 }
 
-// O anel exterior que segue com atraso
 .custom-cursor-ring {
   position: fixed;
   top: 0;
   left: 0;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--cursor-color); // USA A VARIÁVEL DE TEMA
+  border: 2px solid var(--cursor-color, #{variables.$primary});
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transition:
-    transform 0.2s ease-out,
-    width 0.3s ease,
-    height 0.3s ease,
-    border-color 0.3s ease,
-    border-width 0.3s ease;
-  will-change: transform, width, height; // Otimização de performance
+  // Transição suave para todas as propriedades
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, width, height, border;
 
+  // Estado de hover - se expande e fica mais fino
   &.hover {
     width: 50px;
     height: 50px;
     border-width: 1px;
-    transform: translate(-25px, -25px); // Ajusta a posição ao centro
+    background-color: rgba(variables.$primary, 0.1);
+  }
+
+  // Estado de movimento - rotação e escala são aplicadas via JS
+  // A classe 'moving' pode ser usada para alterar a cor ou opacidade se desejar
+  &.moving {
+    transition-duration: 0.1s; // Reage mais rápido ao movimento
   }
 }
 
-// O ponto central que segue o rato instantaneamente
 .custom-cursor-dot {
   position: fixed;
-  top: -2px; // Offset para centrar
+  top: -2px;
   left: -2px;
   width: 4px;
   height: 4px;
-  background-color: var(--cursor-color); // USA A VARIÁVEL DE TEMA
+  background-color: var(--cursor-color, #{variables.$primary});
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  box-shadow: 0 0 10px var(--cursor-color); // USA A VARIÁVEL DE TEMA
+  box-shadow: 0 0 10px var(--cursor-color, #{variables.$primary});
   will-change: transform;
+  transition: all 0.2s ease;
+
+  // No hover, o ponto central cresce e brilha mais
+  &.hover {
+    transform: scale(2);
+    box-shadow: 0 0 15px var(--cursor-color, #{variables.$primary});
+  }
 }
 
-// Esconde o cursor customizado em dispositivos de toque, onde não faz sentido
 @media (hover: none) and (pointer: coarse) {
   .custom-cursor-ring,
   .custom-cursor-dot {
     display: none;
   }
-  // Restaura o cursor padrão em dispositivos de toque
   body,
   a,
   button,

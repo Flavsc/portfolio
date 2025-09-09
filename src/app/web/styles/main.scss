@@ -15,10 +15,11 @@ body {
   background-color: variables.$black;
   overflow-x: hidden;
   --cursor-color: #e2d6fa;
+  cursor: none; // ADICIONADO: Esconde o cursor padrão
 }
 
 body.theme-light {
-  --cursor-color: #0f0f1e; // Cor para tema claro
+  --cursor-color: #0f0f1e;
 }
 
 .app {
