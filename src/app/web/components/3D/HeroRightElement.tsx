@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber'; // CORRIGIDO: de "-" para "/"
 import * as THREE from 'three';
 
 export default function HeroRightElement() {
@@ -17,15 +17,15 @@ export default function HeroRightElement() {
   return (
     <mesh
       ref={meshRef}
-      position={[viewport.width / 3, 0, 0]}
-      scale={[0.4, 0.4, 0.4]} // Escala ajustada para o novo tamanho da geometria
+      position={[viewport.width / 4.2, 0, 0]}
+      scale={[0.6, 0.6, 0.6]} // Escala um pouco maior para a nova forma
     >
-      {/* Geometria alterada para um cubo */}
-      <boxGeometry args={[1.5, 1.5, 1.5]} />
+      {/* Geometria alterada para um Nó de Torus (TorusKnot) */}
+      <torusKnotGeometry args={[0.4, 0.2, 100, 20]} />
       <meshStandardMaterial
         color="#e2d6fa"
         emissive="#e2d6fa"
-        emissiveIntensity={0.5} // Aumentado o brilho para o wireframe
+        emissiveIntensity={0.7}
         wireframe={true} // A propriedade chave: renderiza apenas as arestas
       />
     </mesh>
