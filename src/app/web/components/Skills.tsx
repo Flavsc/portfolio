@@ -1,27 +1,29 @@
 import { motion } from 'framer-motion';
-import { Code, Brush, Terminal, GitBranch } from 'lucide-react';
+import { Code, Brush, Terminal, PenTool} from 'lucide-react';
 import '@styles/components/Skills.scss';
 import { Skill } from '../../types';
 
 const skillsData: Skill[] = [
   { name: 'React', category: 'frontend' },
-  { name: 'TypeScript', category: 'frontend' },
-  { name: 'Next.js', category: 'frontend' },
+  { name: 'Angular', category: 'frontend' },
   { name: 'Three.js', category: 'frontend' },
-  { name: 'Node.js', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'Prisma', category: 'backend' },
-  { name: 'Git', category: 'tools' },
-  { name: 'Figma', category: 'design' },
   { name: 'SCSS', category: 'frontend' },
   { name: 'Framer Motion', category: 'frontend' },
+  { name: 'NestJS', category: 'backend' },
+  { name: 'Java Springboot', category: 'backend' },
+  { name: 'Django', category: 'backend' },
+  { name: 'Git', category: 'tools' },
+  { name: 'SQL', category: 'tools' },
   { name: 'Docker', category: 'tools' },
+  { name: 'Figma', category: 'design' },
+  { name: 'Adobe Photoshop', category: 'design' },
+  { name: 'Adobe Illustrator', category: 'design' },
 ];
 
 const categories = {
   frontend: { icon: <Code />, label: 'Frontend' },
   backend: { icon: <Terminal />, label: 'Backend' },
-  tools: { icon: <GitBranch />, label: 'Ferramentas' },
+  tools: { icon: <PenTool />, label: 'Tools' },
   design: { icon: <Brush />, label: 'Design' },
 };
 
