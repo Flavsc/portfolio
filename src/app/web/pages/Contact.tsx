@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react'; // Importar useContext
 import { motion, Variants } from 'framer-motion';
+import { ThemeContext } from '@context/ThemeContext'; // Importar o ThemeContext
 import '@styles/components/Contact.scss';
 
 const pageVariants: Variants = {
@@ -20,6 +21,21 @@ export default function Contact() {
     email: '',
     message: '',
   });
+
+  // CORREÇÃO: Usar o ThemeContext para mudar o tema globalmente
+  const { setTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    setTheme('light'); // Define o tema como claro
+    document.body.classList.add('theme-light');
+
+    // Função de limpeza para reverter o tema ao sair da página
+    return () => {
+      setTheme('dark'); // Reverte para o tema escuro
+      document.body.classList.remove('theme-light');
+    };
+  }, [setTheme]); // Adicionar setTheme como dependência
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
