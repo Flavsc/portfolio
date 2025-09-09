@@ -14,6 +14,11 @@ body {
   line-height: 1.6;
   background-color: variables.$black;
   overflow-x: hidden;
+  --cursor-color: #e2d6fa;
+}
+
+body.theme-light {
+  --cursor-color: #0f0f1e; // Cor para tema claro
 }
 
 .app {

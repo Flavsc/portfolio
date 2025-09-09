@@ -1,11 +1,11 @@
 // Colors
-$primary: #e2d6fa; // Azul elétrico/ciano
+$primary: #e2d6fa;
 $secondary: #1a1a2e;
-$black: #0f0f1e; // Preto levemente azulado
-$white: #e0e0e0; // Branco levemente acinzentado
+$black: #0f0f1e;
+$white: #e0e0e0;
 $gray: #1f1e22;
-$text-primary: #e0e0e0; // Variável que estava em falta, adicionada de volta
-$text-secondary: #e0e0e0; // Variável que corrigimos anteriormente
+$text-primary: #e0e0e0;
+$text-secondary: #e0e0e0;
 
 // Typography
 $font-primary: 'Courier New', Courier, monospace;
@@ -27,10 +27,7 @@ $spacing-xl: 3rem;
 $transition-fast: 0.1s ease-in-out;
 $transition-medium: 0.2s ease-in-out;
 $border-radius: 0;
-$shadow-sm: 0 4px 0 rgba(0, 0, 0, 1);
-$shadow-md: 0 8px 0 rgba(0, 0, 0, 1);
-$shadow-lg: 0 12px 0 rgba(0, 0, 0, 1);
-$blur-effect: none;
 
+// Larguras
 $container-width: 1200px;
 $container-padding: 1.5rem;

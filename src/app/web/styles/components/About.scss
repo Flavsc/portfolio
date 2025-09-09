@@ -1,91 +1,82 @@
 @use '../variables';
 
+.about-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: variables.$white;
+  color: variables.$black;
+  position: relative;
+  overflow: hidden;
+
+  // CORREÇÃO: Força os elementos filhos a empilharem verticalmente
+  display: flex;
+  flex-direction: column;
+}
+
 .about-section {
   min-height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
-  overflow: hidden;
+  text-align: center;
   position: relative;
-  background-color: variables.$black;
+  z-index: 2;
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 1200px;
+  max-width: 1000px;
   width: 100%;
-
-  @media (min-width: variables.$tablet) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
-    align-items: center;
-  }
-}
-
-.about-title-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .about-title {
   font-family: variables.$font-secondary;
   font-weight: 900;
-  font-size: clamp(4rem, 15vw, 10rem);
-  line-height: 0.9;
+  font-size: clamp(3rem, 12vw, 8rem);
+  line-height: 1;
   text-transform: uppercase;
-  color: variables.$white;
-  margin: 0;
-  text-align: center;
-
-  @media (min-width: variables.$tablet) {
-    text-align: left;
-  }
+  color: variables.$black;
+  margin-bottom: 4rem;
+  transform: skew(-10deg);
+  letter-spacing: -5px;
 }
 
 .about-content {
-  border: 2px solid variables.$primary;
-  padding: 2rem;
-  background-color: rgba(variables.$black, 0.5);
-  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
+  align-items: center;
 }
 
 .about-text {
   font-family: variables.$font-primary;
-  color: variables.$white;
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 60ch; // Limita o comprimento para melhor legibilidade
+  color: variables.$black;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  max-width: 60ch;
+  text-align: center;
+  font-weight: bold;
 }
 
 .about-cta-button {
   display: inline-block;
-  padding: variables.$spacing-sm variables.$spacing-lg;
-  border: 1px solid variables.$primary;
-  background: transparent;
-  color: variables.$primary;
+  padding: 1rem 2rem;
+  border: 2px solid variables.$black;
+  background: variables.$black;
+  color: variables.$white;
   font-family: variables.$font-primary;
   font-weight: bold;
   font-size: 0.9rem;
   text-transform: uppercase;
   cursor: pointer;
-  text-align: center;
   text-decoration: none;
   letter-spacing: 1px;
   transition: all 0.2s ease;
-  margin-top: 1rem;
-  align-self: flex-start;
-
+  margin-top: 2rem;
   &:hover {
-    background: variables.$primary;
+    background: transparent;
     color: variables.$black;
-    transform: scale(1.05);
   }
 }

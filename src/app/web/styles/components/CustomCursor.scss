@@ -1,7 +1,12 @@
-@use "../variables";
+@use '../variables';
 
-// CORREÇÃO: Força a ocultação do cursor padrão em todos os elementos
-body, a, button, [role="button"], input, textarea {
+// Força a ocultação do cursor padrão em todos os elementos
+body,
+a,
+button,
+[role='button'],
+input,
+textarea {
   cursor: none !important;
 }
 
@@ -12,18 +17,22 @@ body, a, button, [role="button"], input, textarea {
   left: 0;
   width: 24px;
   height: 24px;
-  border: 2px solid variables.$primary;
+  border: 2px solid var(--cursor-color); // USA A VARIÁVEL DE TEMA
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, border-width 0.3s ease;
+  transition:
+    transform 0.2s ease-out,
+    width 0.3s ease,
+    height 0.3s ease,
+    border-color 0.3s ease,
+    border-width 0.3s ease;
   will-change: transform, width, height; // Otimização de performance
 
   &.hover {
     width: 50px;
     height: 50px;
     border-width: 1px;
-    border-color: variables.$white;
     transform: translate(-25px, -25px); // Ajusta a posição ao centro
   }
 }
@@ -35,21 +44,27 @@ body, a, button, [role="button"], input, textarea {
   left: -2px;
   width: 4px;
   height: 4px;
-  background-color: variables.$primary;
+  background-color: var(--cursor-color); // USA A VARIÁVEL DE TEMA
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  box-shadow: 0 0 10px variables.$primary;
+  box-shadow: 0 0 10px var(--cursor-color); // USA A VARIÁVEL DE TEMA
   will-change: transform;
 }
 
 // Esconde o cursor customizado em dispositivos de toque, onde não faz sentido
 @media (hover: none) and (pointer: coarse) {
-  .custom-cursor-ring, .custom-cursor-dot {
+  .custom-cursor-ring,
+  .custom-cursor-dot {
     display: none;
   }
   // Restaura o cursor padrão em dispositivos de toque
-  body, a, button, [role="button"], input, textarea {
+  body,
+  a,
+  button,
+  [role='button'],
+  input,
+  textarea {
     cursor: auto !important;
   }
 }

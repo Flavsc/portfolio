@@ -1,81 +1,112 @@
 @use '../variables';
 
 .skills-section {
-    padding: 4rem 2rem;
-    background-color: lighten(variables.$black, 2%);
-    border-top: 1px solid rgba(variables.$primary, 0.2);
-    border-bottom: 1px solid rgba(variables.$primary, 0.2);
+  padding: 4rem 2rem;
+  background-color: lighten(variables.$black, 2%);
+  border-top: 1px solid rgba(variables.$primary, 0.2);
+  border-bottom: 1px solid rgba(variables.$primary, 0.2);
 }
 
 .skills-title {
-    font-family: variables.$font-secondary;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-    color: variables.$white;
+  font-family: variables.$font-secondary;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  color: variables.$white;
 }
 
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .skill-category {
-    border: 1px solid rgba(variables.$primary, 0.3);
-    padding: 2rem;
-    transition: all 0.3s ease;
+  border: 1px solid rgba(variables.$primary, 0.3);
+  padding: 2rem;
+  transition: all 0.3s ease;
 
-    &:hover {
-        border-color: variables.$primary;
-        transform: translateY(-5px);
-        background-color: rgba(variables.$primary, 0.05);
-    }
+  &:hover {
+    border-color: variables.$primary;
+    transform: translateY(-5px);
+    background-color: rgba(variables.$primary, 0.05);
+  }
 }
 
 .category-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    color: variables.$primary;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: variables.$primary;
 
-    svg {
-        width: 32px;
-        height: 32px;
-    }
+  svg {
+    width: 32px;
+    height: 32px;
+  }
 
-    h3 {
-        font-family: variables.$font-secondary;
-        font-size: 1.5rem;
-        margin: 0;
-    }
+  h3 {
+    font-family: variables.$font-secondary;
+    font-size: 1.5rem;
+    margin: 0;
+  }
 }
 
 .skills-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 
-    li {
-        font-family: variables.$font-primary;
-        font-size: 1rem;
-        color: variables.$white;
-        position: relative;
-        padding-left: 1.5rem;
+  li {
+    font-family: variables.$font-primary;
+    font-size: 1rem;
+    color: variables.$white;
+    position: relative;
+    padding-left: 1.5rem;
 
-        &::before {
-            content: '>';
-            position: absolute;
-            left: 0;
-            color: variables.$primary;
-            font-weight: bold;
-        }
+    &::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: variables.$primary;
+      font-weight: bold;
     }
+  }
+}
+
+// ESTILOS PARA O TEMA CLARO
+body.theme-light .skills-section {
+  background-color: variables.$white;
+  border-color: rgba(variables.$black, 0.1);
+}
+
+body.theme-light .skills-title {
+  color: variables.$black;
+}
+
+body.theme-light .skill-category {
+  border-color: rgba(variables.$black, 0.2);
+
+  &:hover {
+    border-color: variables.$black;
+    background-color: rgba(variables.$black, 0.02);
+  }
+}
+
+body.theme-light .category-header {
+  color: variables.$black;
+}
+
+body.theme-light .skills-list li {
+  color: variables.$black;
+
+  &::before {
+    color: variables.$black;
+  }
 }

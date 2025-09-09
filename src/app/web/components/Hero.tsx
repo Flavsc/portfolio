@@ -1,18 +1,14 @@
 import { motion, Variants } from 'framer-motion';
-import HeroCanvas from '@components/3D/HeroCanvas';
-import HudPanel from '@components/HudPanel';
-import NoiseOverlay from '@components/NoiseOverlay';
+import { NavLink } from 'react-router-dom';
+import HeroCanvas from './3D/HeroCanvas';
 import '@styles/components/Hero.scss';
 
 export default function Hero() {
-
   const containerVariants: Variants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.5,
-      },
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.5 },
     },
   };
 
@@ -21,14 +17,13 @@ export default function Hero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.8, ease: 'easeInOut' },
     },
   };
 
   return (
     <section className="hero">
-      <div className="hero-background">
-        <NoiseOverlay />
+      <div className="hero-background-canvas">
         <HeroCanvas />
       </div>
 
@@ -41,17 +36,15 @@ export default function Hero() {
         <motion.h1 className="hero-title" variants={itemVariants}>
           166studios
         </motion.h1>
-
-        <motion.hr className="hero-divider" variants={itemVariants} />
-
         <motion.p className="hero-subtitle" variants={itemVariants}>
-          Creative Development & Digital Experiences
+          Explorando a interseção entre a tecnologia e a arte.
         </motion.p>
+        <motion.div variants={itemVariants}>
+          <NavLink to="/portfolio/projects" className="hero-cta-button">
+            Explorar Projetos
+          </NavLink>
+        </motion.div>
       </motion.div>
-
-      <div className="hud-panel-wrapper">
-        <HudPanel />
-      </div>
     </section>
   );
 }

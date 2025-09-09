@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
-import NoiseOverlay from '@components/NoiseOverlay';
 import '@styles/components/Contact.scss';
 
 const pageVariants: Variants = {
@@ -10,8 +9,8 @@ const pageVariants: Variants = {
 };
 
 const pageTransition = {
-  type: 'tween' as const, // CORRIGIDO
-  ease: 'anticipate' as const, // CORRIGIDO
+  type: 'tween' as const,
+  ease: 'anticipate' as const,
   duration: 0.8,
 };
 
@@ -61,7 +60,6 @@ export default function Contact() {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <NoiseOverlay />
       <motion.section
         className="contact-section"
         variants={containerVariants}

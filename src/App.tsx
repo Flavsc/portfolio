@@ -1,53 +1,37 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import ToasterContainer from '@components/ToasterContainer';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import AppRoutes from '@router/index.tsx';
-import { useThemeDetector } from '@hooks/useThemeDetector.ts';
-import CookieDisabled from '@components/validations/CookieDisabled.tsx';
 import CustomCursor from '@components/CustomCursor';
-import ScrollProgress from '@components/ScrollProgress'; // Importe o novo componente
+import { ThemeContext, Theme } from '@context/ThemeContext';
+import Navbar from '@components/Navbar';
 
-export default function App() {
-  const [cookiesEnabled, setCookiesEnabled] = useState(true);
-  const isDarkTheme = useThemeDetector();
+// Componente interno para gerenciar o tema com base na rota
+const ThemeManager = () => {
+  const location = useLocation();
+  const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    const checkCookieSupport = () => {
-      document.cookie = 'testcookie; SameSite=Strict';
-      const isCookieEnabled = document.cookie.indexOf('testcookie') !== -1;
-      document.cookie =
-        'testcookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict';
-      return isCookieEnabled;
-    };
-
-    if (!checkCookieSupport()) {
-      setCookiesEnabled(false);
-      return;
+    // Lógica para alternar o tema
+    if (location.pathname === '/portfolio/about') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
     }
-  }, []);
-
-  useEffect(() => {
-    const favicon = document.getElementById(
-      'favicon',
-    ) as HTMLLinkElement | null;
-    if (favicon)
-      favicon.href = isDarkTheme
-        ? '/portfolio/WhiteLogo.svg'
-        : '/portfolio/BlackLogo.svg';
-  }, [isDarkTheme]);
-
-  if (!cookiesEnabled) {
-    return <CookieDisabled />;
-  }
+  }, [location.pathname]);
 
   return (
-    <>
-      <ScrollProgress />
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <CustomCursor />
-      <BrowserRouter>
-        <ToasterContainer />
-        <AppRoutes />
-      </BrowserRouter>
-    </>
+      <Navbar /> {/* Navbar agora está dentro do provider também */}
+      <AppRoutes />
+    </ThemeContext.Provider>
+  );
+};
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ThemeManager />
+    </BrowserRouter>
   );
 }

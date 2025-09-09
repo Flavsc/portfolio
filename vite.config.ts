@@ -4,10 +4,12 @@ import svgr from "vite-plugin-svgr";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import analyze from "rollup-plugin-analyzer";
 import compression from "vite-plugin-compression";
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
     base: "/portfolio/",
     plugins: [
+        tsconfigPaths(),
         // Suporte a React com SWC para compilação rápida
         react({
             devTarget: "es2022"

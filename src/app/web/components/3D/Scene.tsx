@@ -1,60 +1,46 @@
-import { useRef, useMemo } from 'react';
-import { useFrame, RootState } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useRef, useState } from 'react';
+import { useFrame, RootState } from '@react-three/fiber';
+import { Points, PointMaterial } from '@react-three/drei';
+import * as random from 'maath/random/dist/maath-random.esm';
 
-// Componente da Cena 3D - Versão "Digital Stream"
 export default function Scene() {
-  const pointsRef = useRef<THREE.Points>(null);
-  
-  // Usamos useMemo para criar a geometria apenas uma vez
-  const particles = useMemo(() => {
-    const count = 5000;
-    const positions = new Float32Array(count * 3);
-    // Armazenamos dados extras para cada partícula para animações complexas
-    const randoms = new Float32Array(count); 
+  const ref = useRef<THREE.Points>(null!);
+  const [sphere] = useState(() =>
+    // A contagem original (25000) parece alta, mas o tamanho (0.01) compensa.
+    // Vamos usar um valor mais equilibrado como no original: 5000.
+    random.inSphere(new Float32Array(5000), { radius: 1.5 }),
+  );
 
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 15;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
-      randoms[i] = Math.random();
-    }
-    
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1));
-    
-    return geometry;
-  }, []);
-
-  // Animação a cada frame
   useFrame((state: RootState, delta: number) => {
-    if (!pointsRef.current) return;
-    
-    // Animação de fluxo contínuo
-    pointsRef.current.rotation.x += delta * 0.02;
-    pointsRef.current.rotation.y += delta * 0.03;
+    if (ref.current) {
+      // Rotação base sutil
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
 
-    const { pointer } = state;
-    const targetQuaternion = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(pointer.y * 0.3, pointer.x * 0.3, 0)
-    );
-    pointsRef.current.quaternion.slerp(targetQuaternion, 0.1);
+      // Lógica para seguir o mouse
+      const targetRotationX = state.mouse.y * 0.5;
+      const targetRotationY = state.mouse.x * 0.5;
+
+      // Suaviza o movimento para o alvo (efeito 'lerp')
+      ref.current.rotation.x +=
+        (targetRotationX - ref.current.rotation.x) * 0.02;
+      ref.current.rotation.y +=
+        (targetRotationY - ref.current.rotation.y) * 0.02;
+    }
   });
 
   return (
-    <>
-      <points ref={pointsRef}>
-        <primitive object={particles} attach="geometry" />
-        <pointsMaterial
-          size={0.02}
-          color="#f1f8f8ff"
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color="#e2d6fa" // Cor original
+          size={0.006} // Tamanho original um pouco maior para visibilidade
           sizeAttenuation={true}
-          transparent={true}
-          opacity={0.7}
-          blending={THREE.AdditiveBlending}
+          depthWrite={false}
         />
-      </points>
-    </>
+      </Points>
+    </group>
   );
 }

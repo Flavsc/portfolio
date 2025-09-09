@@ -1,21 +1,33 @@
 @use '../variables';
+@use 'sass:math';
 
 // Container principal da HUD
 .hud-frame {
-  z-index: 99999;
+  z-index: 1000;
   pointer-events: none;
   * {
     pointer-events: auto;
+  }
+
+  // Lógica de Temas com CSS Variables
+  &.theme-dark {
+    --hud-color: #{variables.$primary};
+    --text-color: #{variables.$white};
+    --text-secondary-color: #{rgba(variables.$white, 0.7)};
+  }
+  &.theme-light {
+    --hud-color: #{variables.$black};
+    --text-color: #{variables.$black};
+    --text-secondary-color: #{rgba(variables.$black, 0.7)};
   }
 }
 
 // Elementos decorativos (linhas, cantos)
 .hud-decoration {
   position: fixed;
-  background-color: variables.$primary;
+  background-color: var(--hud-color);
   opacity: 0.4;
-  box-shadow: 0 0 8px rgba(variables.$primary, 0.7);
-  animation: hud-boot-sequence 1.5s ease-out;
+  box-shadow: 0 0 8px var(--hud-color);
   transition: all 0.3s ease;
 
   &.top-line,
@@ -30,7 +42,6 @@
     top: 5%;
     height: 90%;
   }
-
   &.top-line {
     top: 2rem;
   }
@@ -49,8 +60,7 @@
     height: 25px;
     background-color: transparent;
     border-style: solid;
-    border-color: variables.$primary;
-
+    border-color: var(--hud-color);
     &.top-left {
       top: 2rem;
       left: 2rem;
@@ -73,7 +83,6 @@
     }
   }
 
-  // CORREÇÃO PARA MOBILE: Ajusta a posição das decorações em ecrãs menores
   @media (max-width: variables.$tablet) {
     &.top-line {
       top: 1rem;
@@ -112,18 +121,16 @@
 .hud-module-wrapper {
   position: fixed;
   padding: 1rem;
-  font-family: 'Fira Code', 'Consolas', monospace;
-  color: variables.$text-secondary;
-  animation: hud-content-fade-in 1s ease-out 1s backwards;
+  font-family: variables.$font-primary;
+  animation: hud-content-fade-in 1s ease-out 0.5s backwards;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    background: linear-gradient(
-      to right,
-      rgba(variables.$primary, 0),
-      rgba(variables.$primary, 0.5)
-    );
+@keyframes hud-content-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -131,17 +138,10 @@
 .top-left {
   top: 2.5rem;
   left: 3rem;
-  &::before {
-    top: 50%;
-    right: -50px;
-    width: 50px;
-    height: 1px;
-    transform: translateY(-50%);
-  }
   .logo {
+    color: var(--text-color);
     font-size: 1.2rem;
     font-weight: 700;
-    color: variables.$white;
     text-decoration: none;
     letter-spacing: 1px;
   }
@@ -151,6 +151,7 @@
     gap: 0.5rem;
     font-size: 0.8rem;
     margin-top: 0.5rem;
+    color: var(--text-secondary-color);
   }
   .status-light {
     width: 8px;
@@ -160,156 +161,12 @@
     box-shadow: 0 0 5px #27c93f;
     animation: pulse-green 2s infinite;
   }
-
   @media (max-width: variables.$tablet) {
     top: 1.5rem;
     left: 1.5rem;
   }
 }
 
-.top-right {
-  top: 2.5rem;
-  right: 3rem;
-  &::before {
-    top: 50%;
-    left: -50px;
-    width: 50px;
-    height: 1px;
-    transform: translateY(-50%) scaleX(-1);
-  }
-
-  .nav-list-desktop {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-item {
-    color: variables.$text-secondary;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 5px;
-    transition: color 0.2s ease;
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 1px;
-      background-color: variables.$primary;
-      transition: all 0.3s ease;
-    }
-    &:hover,
-    &.active {
-      color: variables.$white;
-      &::after {
-        left: 0;
-        width: 100%;
-      }
-    }
-  }
-
-  @media (max-width: variables.$tablet) {
-    top: 1.5rem;
-    right: 1.5rem;
-    .nav-list-desktop {
-      gap: 1.5rem;
-    }
-    .nav-item {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: variables.$mobile) {
-    .nav-list-desktop {
-      display: none;
-    }
-  }
-}
-
-.bottom-left {
-  bottom: 2.5rem;
-  left: 3rem;
-  &::before {
-    bottom: 50%;
-    right: -50px;
-    width: 50px;
-    height: 1px;
-    transform: translateY(50%);
-  }
-  .system-info p {
-    margin: 0.2rem 0;
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: variables.$tablet) {
-    bottom: 1.5rem;
-    left: 1.5rem;
-  }
-  @media (max-width: variables.$mobile) {
-    display: none;
-  }
-}
-
-.bottom-right {
-  bottom: 2.5rem;
-  right: 3rem;
-  &::before {
-    bottom: 50%;
-    left: -50px;
-    width: 50px;
-    height: 1px;
-    transform: translateY(50%) scaleX(-1);
-  }
-  .social-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    a {
-      color: variables.$text-secondary;
-      transition: color 0.2s ease;
-      &:hover {
-        color: variables.$white;
-      }
-    }
-  }
-
-  @media (max-width: variables.$tablet) {
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-  @media (max-width: variables.$mobile) {
-    display: none;
-  }
-}
-
-// Animações
-@keyframes hud-boot-sequence {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-}
-@keyframes hud-content-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 @keyframes pulse-green {
   0%,
   100% {
@@ -322,10 +179,116 @@
   }
 }
 
-// --- NOVO: Estilos do Menu Radial ---
-.radial-menu-mobile {
-  display: none; // Só aparece em telas mobile
+.top-right {
+  top: 2.5rem;
+  right: 3rem;
+  .nav-list-desktop {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-item {
+    color: var(--text-secondary-color);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background-color: var(--hud-color);
+      transition: all 0.3s ease;
+    }
+    &:hover,
+    &.active {
+      color: var(--text-color);
+      &::after {
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: variables.$tablet) {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  @media (max-width: variables.$mobile) {
+    .nav-list-desktop {
+      display: none;
+    }
+  }
+}
 
+.bottom-left {
+  bottom: 2.5rem;
+  left: 3rem;
+  .system-info p {
+    margin: 0.2rem 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
+    text-transform: uppercase;
+  }
+  @media (max-width: variables.$tablet) {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+  @media (max-width: variables.$mobile) {
+    display: none;
+  }
+}
+
+.bottom-right {
+  bottom: 2.5rem;
+  right: 3rem;
+  .social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .social-list a {
+    color: var(--text-secondary-color);
+    transition: color 0.2s ease;
+    &:hover {
+      color: var(--text-color);
+    }
+  }
+  @media (max-width: variables.$tablet) {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  @media (max-width: variables.$mobile) {
+    display: none;
+  }
+}
+
+// Menu Radial
+.radial-menu-mobile {
+  &.theme-dark {
+    --radial-bg: #{rgba(variables.$primary, 0.2)};
+    --radial-border: #{rgba(variables.$primary, 0.7)};
+    --radial-text: #{variables.$white};
+    --radial-hover-bg: #{rgba(variables.$primary, 0.4)};
+    --radial-hover-shadow: #{rgba(variables.$primary, 0.5)};
+  }
+  &.theme-light {
+    --radial-bg: #{rgba(variables.$black, 0.1)};
+    --radial-border: #{rgba(variables.$black, 0.5)};
+    --radial-text: #{variables.$black};
+    --radial-hover-bg: #{rgba(variables.$black, 0.2)};
+    --radial-hover-shadow: #{rgba(variables.$black, 0.3)};
+  }
+
+  display: none;
   @media (max-width: variables.$mobile) {
     display: block;
   }
@@ -338,10 +301,10 @@
   transform: translateX(-50%);
   width: 50px;
   height: 50px;
-  background-color: rgba(variables.$primary, 0.2);
-  border: 1px solid rgba(variables.$primary, 0.7);
+  background-color: var(--radial-bg);
+  border: 1px solid var(--radial-border);
   border-radius: 50%;
-  color: variables.$white;
+  color: var(--radial-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,10 +312,9 @@
   z-index: 10001;
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-
   &:hover {
-    background-color: rgba(variables.$primary, 0.4);
-    box-shadow: 0 0 15px rgba(variables.$primary, 0.5);
+    background-color: var(--radial-hover-bg);
+    box-shadow: 0 0 15px var(--radial-hover-shadow);
   }
 }
 
@@ -365,13 +327,11 @@
   pointer-events: none;
   transition: opacity 0.4s ease;
   z-index: 10000;
-
   &.is-open {
     opacity: 1;
     pointer-events: auto;
   }
 }
-
 .radial-nav {
   position: absolute;
   bottom: 1.5rem;
@@ -398,13 +358,11 @@
       transform 0.4s ease,
       opacity 0.4s ease;
     transition-delay: calc(var(--i) * 0.05s);
-
     span {
       display: inline-block;
       transform: rotate(calc(var(--angle) * -1));
       transition: letter-spacing 0.2s ease;
     }
-
     &:hover,
     &.active {
       span {
@@ -417,7 +375,6 @@
   .radial-menu-container.is-open & {
     .radial-nav-item {
       opacity: 1;
-
       $item-count: 4;
       $spread-angle: 140deg;
       $start-angle: -160deg;
@@ -425,7 +382,9 @@
 
       @for $i from 0 through ($item-count - 1) {
         &:nth-child(#{$i + 1}) {
-          $angle: $start-angle + ($spread-angle / ($item-count - 1)) * $i;
+          $angle: $start-angle +
+            (math.div($spread-angle, $item-count - 1)) *
+            $i;
           --angle: #{$angle};
           transform: rotate($angle) translateY(-$radius) scale(1);
         }

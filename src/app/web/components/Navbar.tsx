@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Github, Linkedin, Mail, Grid, X } from 'lucide-react';
 import '@styles/components/Navbar.scss';
+import { ThemeContext } from '@context/ThemeContext';
 
 const navLinks = [
   { to: '/portfolio/', text: 'main' },
@@ -22,29 +23,23 @@ const socialLinks = [
 
 export default function Navbar() {
   const [isRadialMenuOpen, setIsRadialMenuOpen] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    if (isRadialMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isRadialMenuOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isRadialMenuOpen]);
 
-  const toggleRadialMenu = () => {
-    setIsRadialMenuOpen(!isRadialMenuOpen);
-  };
+  const toggleRadialMenu = () => setIsRadialMenuOpen(!isRadialMenuOpen);
+  const handleNavLinkClick = () => setIsRadialMenuOpen(false);
 
-  const handleNavLinkClick = () => {
-    setIsRadialMenuOpen(false);
-  };
+  const hudClassName = `hud-frame theme-${theme}`;
 
   return (
     <>
-      <div className="hud-frame">
+      <div className={hudClassName}>
         {/* -- Elementos Decorativos de Fundo -- */}
         <div className="hud-decoration top-line"></div>
         <div className="hud-decoration left-line"></div>
@@ -76,7 +71,6 @@ export default function Navbar() {
                 <NavLink
                   to={link.to}
                   className="nav-item"
-                  // CORREÇÃO APLICADA AQUI:
                   end={link.to === '/portfolio/'}
                 >
                   {link.text}
@@ -89,7 +83,7 @@ export default function Navbar() {
         {/* -- Módulo Inferior Esquerdo: Informação do Sistema -- */}
         <div className="hud-module-wrapper bottom-left">
           <div className="module-content system-info">
-            <p>UI_VERSION: 2.2.0_RADIAL</p>
+            <p>UI_VERSION: 3.2.0_HUD</p>
             <p>RENDER_MODE: R3F_OPTIMIZED</p>
           </div>
         </div>
@@ -115,8 +109,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* -- Menu Radial para Mobile -- */}
-      <div className="radial-menu-mobile">
+      {/* -- Menu Radial para Mobile (Adapta-se ao tema) -- */}
+      <div className={`radial-menu-mobile theme-${theme}`}>
         <button
           className="radial-menu-toggle"
           onClick={toggleRadialMenu}
@@ -134,7 +128,6 @@ export default function Navbar() {
                 to={link.to}
                 className="radial-nav-item"
                 onClick={handleNavLinkClick}
-                // CORREÇÃO APLICADA AQUI TAMBÉM:
                 end={link.to === '/portfolio/'}
                 style={{ '--i': index } as React.CSSProperties}
               >

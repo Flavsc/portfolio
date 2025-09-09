@@ -1,40 +1,28 @@
 import { motion, Variants } from 'framer-motion';
-import NoiseOverlay from '@components/NoiseOverlay';
-import Skills from '../components/Skills'; // CORRIGIDO
+import { useInView } from 'react-intersection-observer';
 import '@styles/components/About.scss';
+import Skills from '@components/Skills';
+import Vision from '@components/Vision';
+import { useEffect } from 'react';
 
 const pageVariants: Variants = {
-  initial: { opacity: 0, x: '-100vw' },
-  in: { opacity: 1, x: 0 },
-  out: { opacity: 0, x: '100vw' },
-};
-
-const pageTransition = {
-  type: 'tween' as const, // CORRIGIDO
-  ease: 'anticipate' as const, // CORRIGIDO
-  duration: 0.8,
+  initial: { opacity: 0 },
+  in: { opacity: 1, transition: { duration: 0.8, ease: 'easeInOut' } },
+  out: { opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
 };
 
 export default function About() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
+  useEffect(() => {
+    document.body.classList.add('theme-light');
+    return () => {
+      document.body.classList.remove('theme-light');
+    };
+  }, []);
 
   return (
     <motion.div
@@ -42,44 +30,53 @@ export default function About() {
       animate="in"
       exit="out"
       variants={pageVariants}
-      transition={pageTransition}
+      className="about-page-container"
     >
-      <NoiseOverlay />
-      <motion.section
-        className="about-section"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <section ref={ref} className="about-section">
         <div className="about-grid">
-          <motion.div className="about-title-container" variants={itemVariants}>
-            <h1 className="about-title">
-              SOBRE
-              <br />
-              MIM
-            </h1>
-          </motion.div>
-
-          <motion.div className="about-content" variants={itemVariants}>
-            <p className="about-text">
-              Olá! Sou Flávio, um desenvolvedor criativo apaixonado por
-              construir experiências digitais únicas e memoráveis. Minha missão
-              é unir design de vanguarda com tecnologia de ponta para criar
-              soluções que não só funcionam bem, mas que também contam uma
-              história e provocam uma emoção.
-            </p>
-            <p className="about-text">
-              Atuo na interseção entre a arte e o código, explorando novas
-              possibilidades e desafiando os limites do que é possível na web.
-              Cada projeto é uma tela em branco e uma oportunidade para inovar.
-            </p>
-            <a href="/portfolio/contact" className="about-cta-button">
-              Vamos Conversar
-            </a>
-          </motion.div>
+          <motion.h1
+            className="about-title"
+            initial={{ opacity: 0, y: -50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            O MANIFESTO
+          </motion.h1>
+          <div className="about-content">
+            <motion.p
+              className="about-text"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Na 166studios, o código é a matéria-prima para a criação de
+              realidades digitais que desafiam o convencional. Cada projeto é
+              uma oportunidade de fundir lógica e design de vanguarda para
+              construir o inesperado.
+            </motion.p>
+            <motion.p
+              className="about-text"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              Acreditamos em um digital com identidade, que pulsa com textura e
+              atitude. Se você busca uma presença online que não pede licença
+              para existir, vamos construir algo memorável juntos.
+            </motion.p>
+            <motion.a
+              href="/portfolio/contact"
+              className="about-cta-button"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            >
+              Vamos Colaborar
+            </motion.a>
+          </div>
         </div>
-      </motion.section>
-
+      </section>
+      <Vision />
       <Skills />
     </motion.div>
   );

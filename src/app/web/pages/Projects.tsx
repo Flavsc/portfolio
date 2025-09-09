@@ -1,6 +1,5 @@
 import { motion, Variants } from 'framer-motion';
 import ProjectCard from '@components/ProjectCard';
-import NoiseOverlay from '@components/NoiseOverlay';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar, A11y } from 'swiper/modules';
 import { Project } from '../../types';
@@ -10,7 +9,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import '@styles/components/Projects.scss';
 
-// Dados dos projetos agora como mini estudos de caso
 const projectData: Project[] = [
   {
     id: 1,
@@ -72,8 +70,8 @@ const pageVariants: Variants = {
 };
 
 const pageTransition = {
-  type: 'tween' as const, // CORRIGIDO
-  ease: 'anticipate' as const, // CORRIGIDO
+  type: 'tween' as const,
+  ease: 'anticipate' as const,
   duration: 0.8,
 };
 
@@ -96,7 +94,6 @@ export default function Projects() {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <NoiseOverlay />
       <section className="projects-section">
         <motion.div
           className="projects-container"
@@ -127,7 +124,7 @@ export default function Projects() {
                 spaceBetween: 40,
               },
               1200: {
-                slidesPerView: 2.5, // Para um efeito de "peek" no próximo card
+                slidesPerView: 2.5,
                 spaceBetween: 50,
               },
             }}
