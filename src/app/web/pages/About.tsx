@@ -3,7 +3,8 @@ import { useInView } from 'react-intersection-observer';
 import '@styles/components/About.scss';
 import Skills from '@components/Skills';
 import Vision from '@components/Vision';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react'; // 1. Importar useContext
+import { ThemeContext } from '@context/ThemeContext'; // 2. Importar o ThemeContext
 
 const pageVariants: Variants = {
   initial: { opacity: 0 },
@@ -17,12 +18,22 @@ export default function About() {
     threshold: 0.3,
   });
 
+  // 3. Usar o ThemeContext para controlar o tema global
+  const { setTheme } = useContext(ThemeContext);
+
   useEffect(() => {
+    // Define o tema global como 'light', o que fará a Navbar mudar de cor
+    setTheme('light');
+    // Mantemos a classe no body para os estilos específicos da página
     document.body.classList.add('theme-light');
+
+    // Função de limpeza que é executada quando o usuário sai da página
     return () => {
+      // Reverte o tema global para 'dark'
+      setTheme('dark');
       document.body.classList.remove('theme-light');
     };
-  }, []);
+  }, [setTheme]); // Adicionar setTheme como dependência do useEffect
 
   return (
     <motion.div

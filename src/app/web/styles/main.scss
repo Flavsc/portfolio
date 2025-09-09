@@ -15,11 +15,38 @@ body {
   background-color: variables.$black;
   overflow-x: hidden;
   --cursor-color: #e2d6fa;
-  cursor: none; // ADICIONADO: Esconde o cursor padrão
+  cursor: none;
 }
 
 body.theme-light {
   --cursor-color: #0f0f1e;
+}
+
+// --- Estilo de Seleção de Texto ---
+
+// Padrão (Tema Escuro)
+::selection {
+  background-color: variables.$primary;
+  color: variables.$black;
+}
+::-moz-selection {
+  background-color: variables.$primary;
+  color: variables.$black;
+}
+
+// ADICIONADO: Estilo para o Tema Claro
+body.theme-light {
+  // Para Chrome, Edge, Safari, etc.
+  ::selection {
+    background-color: variables.$black; // Fundo da seleção preto
+    color: variables.$white; // Cor do texto selecionado branca
+  }
+
+  // Para Firefox
+  ::-moz-selection {
+    background-color: variables.$black; // Fundo da seleção preto
+    color: variables.$white; // Cor do texto selecionado branca
+  }
 }
 
 .app {
