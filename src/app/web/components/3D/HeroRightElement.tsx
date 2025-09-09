@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useFrame, useThree } from '@react-three/fiber'; // CORRIGIDO: de "-" para "/"
+import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export default function HeroRightElement() {
